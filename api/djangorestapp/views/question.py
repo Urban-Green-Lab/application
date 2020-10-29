@@ -2,9 +2,9 @@ from django.http import HttpResponse
 from .. import models
 
 
-def question_view(request, question_id=None):
-    data = request.POST
+def question_post(request, question_id=None):
     if request.method == "POST":
+        data = request.POST
         question_info = {
             "question": data.get("question", None),
             "image": data.get("image", None),
