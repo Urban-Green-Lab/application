@@ -2,9 +2,14 @@ from . import models
 from django.contrib.admin import AdminSite
 from django.template.response import TemplateResponse
 from django.urls import path
-from .forms import QuestionForm, QuestionBankAnswerForm
+from .forms import (
+    QuestionForm,
+    QuestionBankAnswerForm,
+    QuizBankForm,
+    QuizQuestionForm
+)
 from django.conf.urls import url
-from .views import question_view
+from .views import question_post, quiz_post
 
 
 class MyAdminSite(AdminSite):
@@ -16,13 +21,11 @@ class MyAdminSite(AdminSite):
 
         urls += [
             # Question Paths
-            url('questions/', self.admin_view(self.question_view),
-                ),
-            url('questions/<str:action>',
-                self.admin_view(self.question_view)),
-            url('questions/<str:action>/<int:id>',
-                self.admin_view(self.question_view, ),),
-            url("question_view/", question_view, name="question_view")
+            url('questions/create',
+                self.admin_view(self.question_view), name="questions"),
+            url("question_post/", question_post, name="question_post"),
+            url("quizzes/create", self.admin_view(self.quizzes_view), name="quizzes"),
+            url("quiz_post/", quiz_post, name="quiz_post"),
         ]
         urls += [
             path('help/', self.admin_view(self.help_view)),
@@ -47,8 +50,24 @@ class MyAdminSite(AdminSite):
             answer_form_2=QuestionBankAnswerForm(prefix="a2"),
             answer_form_3=QuestionBankAnswerForm(prefix="a3"),
             answer_form_4=QuestionBankAnswerForm(prefix="a4"),
+
         )
         return TemplateResponse(request, "question/form.html", context)
+
+    def quizzes_view(self, request, action=None):
+        context = dict(
+            self.each_context(request),
+            app_path=None,
+            username=request.user.get_username(),
+            quiz_form=QuizBankForm(),
+            quiz_question_form_1=QuizQuestionForm(prefix="qq1"),
+            quiz_question_form_2=QuizQuestionForm(prefix="qq2"),
+            quiz_question_form_3=QuizQuestionForm(prefix="qq3"),
+            quiz_question_form_4=QuizQuestionForm(prefix="qq4"),
+            quiz_question_form_5=QuizQuestionForm(prefix="qq5"),
+
+        )
+        return TemplateResponse(request, "quiz/form.html", context)
 
 
 admin_site = MyAdminSite(name='myadmin')
