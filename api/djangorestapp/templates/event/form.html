@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block content %} Test here {{ form.media }}
+<form action="{% url 'admin:event_post' %}" method="post">
+  {% csrf_token %} {{ question_form.as_p }}
+  <hr />
+  {{ event_form.as_p }}
+  <div style="width: 250px">
+    Date: <input name="date" value="{{date}}" id="datepicker" />
+  </div>
+  <br />
+  {{ event_quiz_form.as_p }}
+  <br />
+
+  <input type="submit" value="OK" />
+
+  <script>
+    $('#datepicker').datepicker();
+  </script>
+</form>
+
+{% endblock %}

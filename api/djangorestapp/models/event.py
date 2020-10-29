@@ -19,7 +19,8 @@ class Event(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
     name = models.CharField(max_length=255)
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(
+        default=False,  help_text="Selecting this will deactivate active events")
     child_mode = models.BooleanField(default=False)
     date = models.DateField(auto_now=False, auto_now_add=False)
 

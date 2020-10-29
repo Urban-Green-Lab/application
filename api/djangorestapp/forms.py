@@ -1,5 +1,6 @@
 from django import forms
-from .models import QuestionBank, QuestionBankAnswer, QuizBank, QuizQuestion
+from .models import (QuestionBank, QuestionBankAnswer,
+                     QuizBank, QuizQuestion, Event, EventQuiz)
 
 
 class QuestionForm(forms.ModelForm):
@@ -36,3 +37,16 @@ class QuizQuestionForm(forms.ModelForm):
     class Meta:
         model = QuizQuestion
         fields = ["question_bank"]
+
+
+class EventForm(forms.ModelForm):
+
+    class Meta:
+        model = Event
+        fields = ["name", "active", "child_mode", ]
+
+
+class EventQuizForm(forms.ModelForm):
+    class Meta:
+        model = EventQuiz
+        fields = ["quiz"]

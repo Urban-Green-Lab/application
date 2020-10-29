@@ -6,10 +6,12 @@ from .forms import (
     QuestionForm,
     QuestionBankAnswerForm,
     QuizBankForm,
-    QuizQuestionForm
+    QuizQuestionForm,
+    EventForm, EventQuizForm
 )
 from django.conf.urls import url
-from .views import question_post, quiz_post
+from .views import question_post, quiz_post, event_post
+import datetime
 
 
 class MyAdminSite(AdminSite):
@@ -26,6 +28,8 @@ class MyAdminSite(AdminSite):
             url("question_post/", question_post, name="question_post"),
             url("quizzes/create", self.admin_view(self.quizzes_view), name="quizzes"),
             url("quiz_post/", quiz_post, name="quiz_post"),
+            url("events/create", self.admin_view(self.events_view), name="events"),
+            url("event_post/", event_post, name="event_post"),
         ]
         urls += [
             path('help/', self.admin_view(self.help_view)),
@@ -68,6 +72,17 @@ class MyAdminSite(AdminSite):
 
         )
         return TemplateResponse(request, "quiz/form.html", context)
+
+    def events_view(self, request, action=None):
+        context = dict(
+            self.each_context(request),
+            app_path=None,
+            username=request.user.get_username(),
+            event_form=EventForm(),
+            event_quiz_form=EventQuizForm(),
+            date=datetime.date.strftime(datetime.date.today(), "%m/%d/%Y")
+        )
+        return TemplateResponse(request, "event/form.html", context)
 
 
 admin_site = MyAdminSite(name='myadmin')
