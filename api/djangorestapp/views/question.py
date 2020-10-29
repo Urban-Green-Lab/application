@@ -1,6 +1,5 @@
-from django.http import HttpResponse
 from .. import models
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import redirect
 
 
 def question_post(request):
@@ -48,10 +47,3 @@ def question_post(request):
                 )
 
         return redirect('admin:question_detail', question_id=question_bank.id)
-
-
-def question_detail(request, question_id=None):
-    if question_id:
-        question = get_object_or_404(models.QuestionBank, pk=question_id)
-        print(question)
-        return HttpResponse(f"Question {question_id}")

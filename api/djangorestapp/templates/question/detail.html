@@ -1,0 +1,13 @@
+{% extends "base.html" %} 
+
+{% block content %}
+    <div class="display-4">Question: {{question.question}}</div>
+
+    <ul>
+    {% for a in answers %}
+        <li> <h2>{{a.answer}} {% if a.is_correct%}(Correct Answer){% endif %}</h2></li>
+    {% endfor %}
+    </ul>
+    <button type="button" class="btn btn-primary">Edit</button>
+
+{% endblock %}
