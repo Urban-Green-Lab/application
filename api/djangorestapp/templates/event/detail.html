@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block content %}
+<div class="display-4">Event: {{event.name}}</div>
+<p>Active: {{event.active}}</p>
+<p>Child Mode: {{event.child_mode}}</p>
+<p>Date: {{event.date}}</p>
+
+<div class="display-4">Questions</div>
+<ul>
+  {% for q in quizzes %}
+  <li>
+    <a href="{% url 'admin:quiz_detail' quiz_id=q.id%}">
+      <h2>{{q.name}}</h2>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+<button type="button" class="btn btn-primary">Edit</button>
+ {% endblock %}
