@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from ..models import Event, EventQuiz
+from ..models import Event, EventQuiz, QuizBank
 import datetime
+from django.shortcuts import redirect, get_object_or_404
 
 
 def event_post(request):
@@ -16,4 +17,17 @@ def event_post(request):
             date=date_str
         )
 
-        return HttpResponse("Event created add even detail view here")
+        quiz = get_object_or_404(QuizBank, pk=int(data.get("quiz")))
+        EventQuiz.objects.create(
+            event=event,
+            quiz=quiz
+        )
+
+        return redirect('admin:event_detail', event_id=event.id)
+
+
+def event_detail(request, event_id=None):
+    if event_id:
+        event = get_object_or_404(Event, pk=event_id)
+        print(event)
+        return HttpResponse(f"Quiz {event_id}")

@@ -10,7 +10,7 @@ from .forms import (
     EventForm, EventQuizForm
 )
 from django.conf.urls import url
-from .views import question_post, quiz_post, event_post
+from .views import question_post, quiz_post, event_post, question_detail, quiz_detail, event_detail
 import datetime
 
 
@@ -25,10 +25,15 @@ class MyAdminSite(AdminSite):
             # Question Paths
             url('questions/create',
                 self.admin_view(self.question_view), name="questions"),
+            url(r"questions/detail/(?P<question_id>\d+)/",
+                question_detail, name="question_detail"),
             url("question_post/", question_post, name="question_post"),
             url("quizzes/create", self.admin_view(self.quizzes_view), name="quizzes"),
+            url(r"quizzes/detail/(?P<quiz_id>\d+)/",
+                quiz_detail, name="quiz_detail"),
             url("quiz_post/", quiz_post, name="quiz_post"),
             url("events/create", self.admin_view(self.events_view), name="events"),
+            url(r"events/detail/(?P<event_id>\d+)/", event_detail, name="event_detail"),
             url("event_post/", event_post, name="event_post"),
         ]
         urls += [

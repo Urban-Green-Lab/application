@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from .. import models
+from django.shortcuts import get_object_or_404, redirect
 
 
-def question_post(request, question_id=None):
+def question_post(request):
     if request.method == "POST":
         data = request.POST
         question_info = {
@@ -46,4 +47,11 @@ def question_post(request, question_id=None):
                     question_bank=question_bank
                 )
 
-        return HttpResponse("Question Created! Add List view Here")
+        return redirect('admin:question_detail', question_id=question_bank.id)
+
+
+def question_detail(request, question_id=None):
+    if question_id:
+        question = get_object_or_404(models.QuestionBank, pk=question_id)
+        print(question)
+        return HttpResponse(f"Question {question_id}")

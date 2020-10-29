@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from ..models import QuizBank, QuizQuestion, QuestionBank
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 
 
 def quiz_post(request):
@@ -19,4 +19,11 @@ def quiz_post(request):
                     question_bank=question
                 )
 
-        return HttpResponse("Quiz created add quiz details view here")
+        return redirect('admin:quiz_detail', quiz_id=quiz_bank.id)
+
+
+def quiz_detail(request, quiz_id=None):
+    if quiz_id:
+        quiz = get_object_or_404(QuizBank, pk=quiz_id)
+        print(quiz)
+        return HttpResponse(f"Quiz {quiz_id}")
