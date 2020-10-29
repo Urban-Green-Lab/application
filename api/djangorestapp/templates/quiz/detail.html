@@ -1,0 +1,18 @@
+{% extends "base.html" %} 
+
+{% block content %}
+    <div class="display-4">Quiz: {{quiz.name}}</div>
+    <h4>Timer: {{quiz.timer}} minutes</h4>
+
+    <ul>
+    {% for q in questions %}
+        <li> 
+            <a href="{% url 'admin:question_detail' question_id=q.id%}">
+                <h2>{{q.question}}</h2>
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+    <button type="button" class="btn btn-primary">Edit</button>
+
+{% endblock %}

@@ -32,7 +32,7 @@ class MyAdminSite(AdminSite):
 
             url("quizzes/create", self.admin_view(self.quizzes_view), name="quizzes"),
             url(r"quizzes/detail/(?P<quiz_id>\d+)/",
-                quiz_detail, name="quiz_detail"),
+                self.admin_view(self.quizzes_view), name="quiz_detail"),
             url("quiz_post/", quiz_post, name="quiz_post"),
 
             url("events/create", self.admin_view(self.events_view), name="events"),
@@ -87,7 +87,7 @@ class MyAdminSite(AdminSite):
         if action == "edit":
             pass
 
-    def quizzes_view(self, request, action=None):
+    def quizzes_view(self, request, quiz_id=None):
         action = request.get_full_path().split('/')[3]
         if action == "create":
             context = dict(
@@ -104,7 +104,19 @@ class MyAdminSite(AdminSite):
             )
             return TemplateResponse(request, "quiz/form.html", context)
         if action == "detail":
-            pass
+            quiz = get_object_or_404(models.QuizBank, pk=quiz_id)
+            questions = [quizquestion.question_bank for quizquestion in models.QuizQuestion.objects.filter(
+                quiz_bank=quiz)]
+
+            print(questions)
+            context = dict(
+                self.each_context(request),
+                app_path=None,
+                username=request.user.get_username(),
+                quiz=quiz,
+                questions=questions,
+            )
+            return TemplateResponse(request, "quiz/detail.html", context)
         if action == "list":
             pass
         if action == "edit":
