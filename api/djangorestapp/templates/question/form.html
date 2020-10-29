@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block content %}
+
+<form action="{% url 'admin:question_view' %}" method="post">
+  {% csrf_token %} {{ question_form.as_p }}
+  <hr />
+  <div id="answer-forms" class="answers">
+    {{ answer_form_1.as_table }}
+    <br />
+    {{ answer_form_2.as_table }}
+    <br />
+    {{ answer_form_3.as_table }}
+    <br />
+    {{ answer_form_4.as_table }}
+  </div>
+
+  <input type="submit" value="OK" />
+</form>
+{% endblock %}
