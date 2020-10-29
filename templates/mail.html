@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urban Green Lab</title>
+  </head>
+  <body>
+    Hello {{full_name}},
+
+    <p>Thank you for Playing </p>
+
+    <p><br>{{event_name}} : {{quiz_name}}</br></p>
+
+    <p>You scorced : {{score}}<p>
+
+    <p>Here are your game results</p>
+
+    <table>
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Extra Information</th>
+        <tr>
+        <c:forEach items={{questionList}} var="element">
+            <tr>
+               <td>${element.question}</td>
+               <td>${element.answer}</td>
+               <td>${element.info_link}</td>
+            </tr>
+        </c:forEach>
+    </table>
+
+    <p>To learn more about us, we encourage you to explore our website. There you'll discover our
+        diverse programs, resources for your home or workplace, our blog, coming events, and more.
+        Reach out to use by email at connect@urbangreenlab.org or message us on one of our social media channels.
+        {{socialMediaLink}}</p>
+  </body>
+
+</html>
