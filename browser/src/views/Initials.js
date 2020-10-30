@@ -11,14 +11,20 @@ class Initials extends Component {
   }
 
   handleClick = () => {
+    const eventId = JSON.parse(localStorage.getItem('event_id'));
+    const quizBank = JSON.parse(localStorage.getItem('quiz_bank'));
+    const score = JSON.parse(localStorage.getItem('score'));
     const userObj = JSON.parse(localStorage.getItem('user'));
     userObj.initials = this.state.initials;
+    userObj.event = eventId;
+    userObj.quiz_bank = quizBank;
+    userObj.score = score;
     localStorage.setItem('user', JSON.stringify(userObj));
 
     const newUserObj = JSON.parse(localStorage.getItem('user'));
-    // TODO: push userObj to API
-    postUserInfo(newUserObj);
-    this.props.history.push('/leaderboard');
+    postUserInfo(newUserObj).then(() => {
+      this.props.history.push('/leaderboard');
+    });
   }
 
   handleChange = (e) => {

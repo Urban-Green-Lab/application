@@ -8,6 +8,7 @@
   margin: 5px 0;
   padding: 12px 0;
   transition: all ease-in-out 0.3s;
+  z-index: 1;
 }
 
 .btn-dark {
@@ -42,4 +43,17 @@
     background-color: transparent;
     color: $azure-blue;
   }
+}
+
+.bg-img {
+  position: absolute;
+  top: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100vh;
 }

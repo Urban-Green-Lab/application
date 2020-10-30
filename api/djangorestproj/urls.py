@@ -22,6 +22,4 @@ urlpatterns = [
     path('active_event_info/', views.get_active_event_info),
     path('quiz_taker/', views.post_quiz_taker),
     path('leaderboard/', views.get_leaderboard),
-    path('api-auth/', include('rest_framework.urls'))
-
 ]
