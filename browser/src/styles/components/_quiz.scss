@@ -1,0 +1,26 @@
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.answer-column {
+  display: flex;
+  flex-direction: column;
+
+  .answer-btn {
+    width: 80%;
+    margin: 10px auto;
+  }
+}
+
+.correct {
+  background-color: green !important;
+  color: white;
+  font-weight: bold;
+}
+
+.wrong {
+  background-color: red !important;
+  color: white;
+  font-weight: bold;
+}

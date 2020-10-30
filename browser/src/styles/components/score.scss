@@ -1,0 +1,31 @@
+.scoreContainer {
+  background-color: $background;
+  color: $font-main;
+  margin-top: 3rem;
+  margin: 1rem;
+
+  .centerImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 100px;
+    margin-top: 3rem;
+    clear: both;
+  }
+  .score {
+      font-size: 60px;
+      font-weight: bold;
+  }
+  .scoreText {
+    font-weight: bold;
+  }
+  .closeBtn {
+    color: $font-main;
+    background-color: transparent;
+    margin-left: 70%;
+    width:50px;
+    padding: 0%;
+    border: none;
+  }
+}

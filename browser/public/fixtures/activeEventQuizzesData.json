@@ -62,18 +62,22 @@
         "answers": [
           {
             "answer": "Taking a train, bus, or bike instead of driving",
-            "is_correct": true
+            "is_correct": false
           },
           {
             "answer": "Eating less meat",
-            "is_correct": true
+            "is_correct": false
           },
           {
             "answer": "Purchasing energy efficient appliances",
-            "is_correct": true
+            "is_correct": false
           },
           {
             "answer": "Replacing your light bulbs with LED’s",
+            "is_correct": false
+          },
+          {
+            "answer": "All Above",
             "is_correct": true
           }
         ]

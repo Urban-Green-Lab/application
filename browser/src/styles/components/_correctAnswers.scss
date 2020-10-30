@@ -1,0 +1,11 @@
+.score-info {
+  display: flex;
+  border: 1px solid lightgray;
+  background-color: white;
+  margin: 20px;
+  border-radius: 10px;
+
+  .correct-emoji {
+    margin-right: 10px;
+  }
+}
