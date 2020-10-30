@@ -222,6 +222,15 @@ class MyAdminSite(AdminSite):
                 quizzes=quizzes
             )
             return TemplateResponse(request, "event/detail.html", context)
+        if action == "list":
+            events = models.Event.objects.all()
+            context = dict(
+                self.each_context(request),
+                app_path=None,
+                username=request.user.get_username(),
+                events=events,
+            )
+            return TemplateResponse(request, "event/list.html", context)
         if action == "edit":
             pass
 
