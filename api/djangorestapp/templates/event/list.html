@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+
+{% block content %}{% with app_path as path %}
+{% include "breadcrumbs.html" %}
+{% endwith %}
+    <div class="display-4">Event</div>
+
+    <ul>
+    {% for e in events %}
+        <li> <a href="{% url 'admin:event_detail' event_id=e.id %}"><p>{{e.name}} </p></a></li>
+    {% endfor %}
+    </ul>
+
+
+{% endblock %}

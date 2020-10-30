@@ -13,10 +13,9 @@ def get_leaderboard(request):
         # get quiz takers from that event
 
         quiz_taker = QuizTaker.objects.filter(
-            event=active_event).order_by('-score')[:5]
+            event=active_event).order_by('-score')
 
         serializer = QuizTakerSerializer(quiz_taker, many=True)
-        print(serializer.data)
         # get the top 5 quiz takers
         return Response(serializer.data)
     except Exception as error:

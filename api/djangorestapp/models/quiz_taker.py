@@ -17,13 +17,14 @@ class QuizTaker(models.Model):
     - score = `IntegerField()`
     - initials = `CharField(max_length=3)`
     """
-    email = models.EmailField(max_length=255)
+    email = models.EmailField(max_length=255, blank=True, null=True)
     fname = models.CharField(max_length=255, blank=True, null=True)
     lname = models.CharField(max_length=255, blank=True, null=True)
     event = models.ForeignKey(Event, on_delete=models.DO_NOTHING)
     quiz_bank = models.ForeignKey(QuizBank, on_delete=models.DO_NOTHING)
     score = models.IntegerField()
     initials = models.CharField(max_length=3)
+    zip_code = models.CharField(max_length=5, blank=True, null=True)
 
     class Meta:
         ordering = ["lname"]
