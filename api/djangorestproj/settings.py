@@ -27,8 +27,8 @@ CORS_ORIGIN_WHITELIST = (
     # "FRONT_END_DOMAIN_URL",  # TCT_TODO: Update this link
     "http://localhost:8000",  # TCT_TODO: Remove this localhost link
     "http://localhost:3000",  # TCT_TODO: Remove this localhost link
-    "uglapp.netlify.app",
-    "deploy-preview-85--uglapp.netlify.app"
+    "http://uglapp.netlify.app",
+    "http://deploy-preview-85--uglapp.netlify.app"
 )
 
 # SECURITY WARNING: keep the secret key used in production secret!
