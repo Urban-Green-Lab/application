@@ -11,7 +11,7 @@ class Score extends Component {
     const score = localStorage.getItem('score');
     return (
         <div className="scoreContainer text-center">
-          <Button className="closeBtn" color="link" onClick={() => this.props.history.push('/thanks')}>Exit</Button>
+          <Button className="closeBtn" onClick={() => this.props.history.push('/thanks')}>Exit</Button>
           <img className="centerImg" src={Celebration} alt="Celebration emoji" />
           <h1 className="mt-2 score"> {score} pts </h1>
           <p className="mt-2 scoreText">YOUR SCORE</p>

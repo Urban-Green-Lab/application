@@ -14,8 +14,12 @@
       text-align: center;
     }
     .closeBtn {
-      color: $font-main;
-      margin-left: 80%;
+        color: $font-main;
+        background-color: transparent;
+        margin-left: 70%;
+        width:50px;
+        padding: 0%;
+        border: none;
     }
     hr {
         color: $font-main;
