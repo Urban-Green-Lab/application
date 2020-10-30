@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %} {% with app_path as path %}
+{% include "breadcrumbs.html" %}
+{% endwith %}
+<form action="{% url 'admin:event_post' %}" method="post">
+  {% csrf_token %} {{ question_form.as_p }}
+  <hr />
+  {{ event_form.as_p }}
+  <div style="width: 250px">
+    Date: <input name="date" value="{{date}}" id="datepicker" />
+  </div>
+  <br />
+  {{ event_quiz_form.as_p }}
+  <br />
+
+  <input type="submit" value="OK" />
+  <input type="hidden" name="event_id" value="{{event.id}}" />
+  <input type="hidden" name="event_quiz_id" value="{{event_quiz.id}}" />
+
+  <script>
+    $('#datepicker').datepicker();
+  </script>
+</form>
+
+{% endblock %}
