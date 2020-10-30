@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'djangorestapp',
     'safedelete',
     'corsheaders',
+    'rest_framework'
 
 ]
 
