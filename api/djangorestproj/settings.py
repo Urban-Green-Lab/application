@@ -14,18 +14,30 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# Pull in IS_HEROKU to see if in production or not
+is_prod = os.getenv('IS_HEROKU', False)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+# If not in production, pull in Environmental Variables locally
+if is_prod is False:
+    import djangorestproj.hidden_keys
+
+CORS_ORIGIN_WHITELIST = (
+    # "FRONT_END_DOMAIN_URL",  # TCT_TODO: Update this link
+    "http://localhost:8000",  # TCT_TODO: Remove this localhost link
+)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@&ysiih@422p_q_pvkm=_&hwi6@$pmj=vl08a#9kp9v_$2eb8i'
+
+# Pull in secert key from Environmental Variables
+SECRET_KEY = os.getenv('SECRET_KEY', "test")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not is_prod
 
-ALLOWED_HOSTS = []
+# TCT_TODO: Remove this localhost link
+ALLOWED_HOSTS = ["localhost", "sustaingame-admin.herokuapp.com"]
 
 
 # Application definition
@@ -38,7 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'djangorestapp',
-    'safedelete'
+    'safedelete',
+    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
@@ -49,6 +63,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'djangorestproj.urls'
@@ -124,3 +140,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Heroku needs a postgress database. This establishes it as one if in production.
+
+if is_prod:
+    import dj_database_url
+    prod_db = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(prod_db)
