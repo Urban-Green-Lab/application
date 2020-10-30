@@ -58,7 +58,6 @@ class MyAdminSite(AdminSite):
 
         other_urls = [
             path('help/', self.admin_view(self.help_view)),
-            # path('csv_info/', self.admin_view(self.csv_info)),
         ]
         urls += (
             event_urls
