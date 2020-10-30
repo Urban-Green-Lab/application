@@ -79,8 +79,9 @@
     {% endfor %}
   </tbody>
 </table>
+  <div class="button-group">
 
-<a style="color: white" href="{% url "admin:event_edit" event_id=event.id%}"  class="btn btn-primary" role="button" >Edit</a>
-<a style="color: white" href="{% url "admin:event_delete" event_id=event.id%}"  class="btn btn-danger" role="button" >Delete</a>
+<a style="color: white" href="{% url "admin:event_edit" event_id=event.id%}"  class="btn btn-primary edit-button" role="button" >Edit</a>
+<a style="color: white" href="{% url "admin:event_delete" event_id=event.id%}"  class="btn btn-danger delete-button" role="button" >Delete</a></div><div class="delete-helper">If you delete an event, any quiz taker associated with it will be removed!</div>
 </div>
  {% endblock %}

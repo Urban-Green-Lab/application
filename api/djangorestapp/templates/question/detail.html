@@ -34,8 +34,9 @@
         {% endfor %}
     </tbody>
   </table>
+  <div class="button-group">
 
-    <a style="color: white" href="{% url "admin:question_edit" question_id=question.id%}"  class="btn btn-primary" role="button" >Edit</a>
-    <a style="color: white" href="{% url "admin:question_delete" question_id=question.id%}"  class="btn btn-danger" role="button" >Delete</a>
+    <a style="color: white" href="{% url "admin:question_edit" question_id=question.id%}"  class="btn btn-primary edit-button" role="button" >Edit</a>
+    <a style="color: white" href="{% url "admin:question_delete" question_id=question.id%}"  class="btn btn-danger delete-button" role="button" >Delete</a></div>
 </div>
 {% endblock %}
