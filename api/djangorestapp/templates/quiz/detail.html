@@ -1,6 +1,8 @@
 {% extends "base.html" %} 
 
-{% block content %}
+{% block content %}{% with app_path as path %}
+{% include "breadcrumbs.html" %}
+{% endwith %}
     <div class="display-4">Quiz: {{quiz.name}}</div>
     <h4>Timer: {{quiz.timer}} minutes</h4>
 

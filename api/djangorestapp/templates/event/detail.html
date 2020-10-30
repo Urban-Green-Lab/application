@@ -1,4 +1,9 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+
+{% block content %}
+{% with app_path as path %}
+{% include "breadcrumbs.html" %}
+{% endwith %}
 <div class="display-4">Event: {{event.name}}</div>
 <p>Active: {{event.active}}</p>
 <p>Child Mode: {{event.child_mode}}</p>

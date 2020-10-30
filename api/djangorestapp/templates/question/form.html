@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% block content %}{% with app_path as path %}
+{% include "breadcrumbs.html" %}
+{% endwith %}
 
 <form action="{% url 'admin:question_form' %}" method="post">
   {% csrf_token %} {{ question_form.as_p }}

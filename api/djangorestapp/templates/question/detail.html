@@ -1,6 +1,8 @@
 {% extends "base.html" %} 
 
-{% block content %}
+{% block content %}{% with app_path as path %}
+{% include "breadcrumbs.html" %}
+{% endwith %}
     <div class="display-4">Question: {{question.question}}</div>
 
     <ul>

@@ -79,7 +79,7 @@ class MyAdminSite(AdminSite):
     def help_view(self, request):
         context = dict(
             self.each_context(request),
-            app_path=None,
+            app_path=request.get_full_path().split("/"),
             username=request.user.get_username(),
         )
         return TemplateResponse(request, "tutorial.html", context)
@@ -91,7 +91,7 @@ class MyAdminSite(AdminSite):
         if action == "create":
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 question_form=QuestionForm(),
                 answer_form_1=QuestionBankAnswerForm(prefix="a1"),
@@ -107,7 +107,7 @@ class MyAdminSite(AdminSite):
 
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 question=question,
                 answers=answers
@@ -117,7 +117,7 @@ class MyAdminSite(AdminSite):
             questions = models.QuestionBank.objects.all()
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 questions=questions,
             )
@@ -143,7 +143,7 @@ class MyAdminSite(AdminSite):
             ]
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 question=question,
                 question_form=QuestionForm(initial=question.__dict__),
@@ -174,7 +174,7 @@ class MyAdminSite(AdminSite):
                 prefix=f"qq{num + 1}",) for num in range(len(questions))]
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 quiz_form=QuizBankForm(),
                 quiz_question_forms=questions
@@ -187,7 +187,7 @@ class MyAdminSite(AdminSite):
 
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 quiz=quiz,
                 questions=questions,
@@ -197,7 +197,7 @@ class MyAdminSite(AdminSite):
             quizzes = models.QuizBank.objects.all()
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 quizzes=quizzes,
             )
@@ -225,7 +225,7 @@ class MyAdminSite(AdminSite):
 
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 quiz_form=QuizBankForm(initial=quiz.__dict__),
                 quiz_question_forms=questions,
@@ -236,6 +236,7 @@ class MyAdminSite(AdminSite):
         if action == "delete":
             quiz.delete()
             return redirect("admin:quizzes_list")
+
     def events_view(self, request, event_id=None):
         action = request.get_full_path().split('/')[3]
         if event_id:
@@ -243,7 +244,7 @@ class MyAdminSite(AdminSite):
         if action == "create":
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 event_form=EventForm(),
                 event_quiz_form=EventQuizForm(),
@@ -256,7 +257,7 @@ class MyAdminSite(AdminSite):
                 event=event)]
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 event=event,
                 quizzes=quizzes
@@ -266,13 +267,28 @@ class MyAdminSite(AdminSite):
             events = models.Event.objects.all()
             context = dict(
                 self.each_context(request),
-                app_path=None,
+                app_path=request.get_full_path().split("/"),
                 username=request.user.get_username(),
                 events=events,
             )
             return TemplateResponse(request, "event/list.html", context)
         if action == "edit":
-            pass
+            event_quizzes = event.eventquiz_set.all()
+            has_quizzes = len(event_quizzes) > 0
+            context = dict(
+                self.each_context(request),
+                app_path=request.get_full_path().split("/"),
+                username=request.user.get_username(),
+                event_form=EventForm(initial=event.__dict__),
+                event=event,
+                event_quiz=(event_quizzes[0] if has_quizzes else None),
+                event_quiz_form=EventQuizForm(
+                    initial=(
+                        {"quiz": event_quizzes[0].quiz.id if has_quizzes else {}})
+                ),
+                date=datetime.date.strftime(event.date, "%m/%d/%Y")
+            )
+            return TemplateResponse(request, "event/form.html", context)
         if action == "delete":
             event.delete()
             return redirect("admin:events_list")

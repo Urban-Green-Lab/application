@@ -33,3 +33,9 @@ class Event(SafeDeleteModel):
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.active:
+            Event.objects.filter(active=True).update(active=False)
+
+        super().save(*args, **kwargs)
