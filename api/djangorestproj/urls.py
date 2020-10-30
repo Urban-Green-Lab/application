@@ -16,10 +16,15 @@ Including another URLconf
 from django.urls import path
 from djangorestapp.admin import admin_site
 from djangorestapp import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from djangorestproj import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin_site.urls),
     path('active_event_info/', views.get_active_event_info),
     path('quiz_taker/', views.post_quiz_taker),
     path('leaderboard/', views.get_leaderboard)
-]
+] 
+
+urlpatterns += staticfiles_urlpatterns()

@@ -6,15 +6,27 @@
     <div class="display-4">Quiz: {{quiz.name}}</div>
     <h4>Timer: {{quiz.timer}} minutes</h4>
 
-    <ul>
-    {% for q in questions %}
-        <li> 
-            <a href="{% url 'admin:question_detail' question_id=q.id%}">
-                <h2>{{q.question}}</h2>
-            </a>
-        </li>
-    {% endfor %}
-    </ul>
+
+<table>  
+    <thead>
+      <tr>
+        <th>
+          <div class="">
+            Question
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for q in questions %}
+            <tr> 
+                <td> 
+                    <a href="{% url 'admin:question_detail' question_id=q.id %}"><p>{{q.question}} </p></a> 
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
 <a style="color: white" href="{% url "admin:quiz_edit" quiz_id=quiz.id%}"  class="btn btn-primary" role="button" >Edit</a>
 <a style="color: white" href="{% url "admin:quiz_delete" quiz_id=quiz.id%}"  class="btn btn-danger" role="button" >Delete</a>
 {% endblock %}

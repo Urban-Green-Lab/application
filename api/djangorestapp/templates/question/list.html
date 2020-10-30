@@ -3,13 +3,26 @@
 {% block content %}{% with app_path as path %}
 {% include "breadcrumbs.html" %}
 {% endwith %}
-    <div class="display-4">Questions</div>
+<div class="display-4">Questions </div>
 
-    <ul>
-    {% for q in questions %}
-        <li> <a href="{% url 'admin:question_detail' question_id=q.id %}"><p>{{q.question}} </p></a></li>
-    {% endfor %}
-    </ul>
-
-
+<table>  
+    <thead>
+      <tr>
+        <th>
+          <div class="">
+            Question
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for q in questions %}
+            <tr> 
+                <td> 
+                    <a href="{% url 'admin:question_detail' question_id=q.id %}"><p>{{q.question}} </p></a> 
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

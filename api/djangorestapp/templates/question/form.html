@@ -1,27 +1,34 @@
-{% extends "base.html" %} {% block content %}{% with app_path as path %} 
+{% extends "base.html" %} {% block content %}{% with app_path as path %}
 {%include "breadcrumbs.html" %} {% endwith %}
 
-<form id="quiz-form" action="{% url 'admin:question_form' %}" method="post">
+<form
+  id="quiz-form"
+  action="{% url 'admin:question_form' %}"
+  class="form"
+  method="post"
+>
+  <h2>Question</h2>
+
   {% csrf_token %} {{ question_form.as_p }}
   <hr />
   <div id="answer-forms" class="answers">
-    <div id="answer-error"> </div>
-    {{ answer_form_1.as_table }}
-    <br />
-    {{ answer_form_2.as_table }}
-    <br />
-    {{ answer_form_3.as_table }}
-    <br />
-    {{ answer_form_4.as_table }}
+    <h2>Answers</h2>
+
+    <div class="answer-form"> {{ answer_form_1.as_p }} </div>
+    <div class="answer-form"> {{ answer_form_2.as_p }} </div>
+    <div class="answer-form"> {{ answer_form_3.as_p }} </div>
+    <div class="answer-form"> {{ answer_form_4.as_p }} </div>
   </div>
 
   <input type="hidden" name="question_id" value="{{question.id}}" />
   <input type="hidden" name="answers" value="{{answers}}" />
-  <input type="submit" id="submit-button" value="OK" />
+ 
+  <input type="submit" id="submit-button" value="OK" />  <span id="answer-error"> </span>
 </form>
 
 <script>
   const inputs = $('input:checkbox');
+  const textInputs = $('input:text');
   const submit = $('#submit-button');
   const error = $('#answer-error');
   const checkChecks = () => {
@@ -37,7 +44,7 @@
       submit.prop('disabled', true);
       error.html('You have to select a correct answer');
     } else if (checked == 1) {
-      if($(`#id_a${checked_element_id}-answer`)[0].value){
+      if ($(`#id_a${checked_element_id}-answer`)[0].value) {
         submit.prop('disabled', false);
         error.html('');
       } else {
@@ -53,7 +60,7 @@
     }
   };
   checkChecks();
-
   inputs.change(checkChecks);
+  textInputs.keypress(checkChecks);
 </script>
 {% endblock %}

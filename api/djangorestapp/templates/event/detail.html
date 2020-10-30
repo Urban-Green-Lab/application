@@ -4,21 +4,79 @@
 {% with app_path as path %}
 {% include "breadcrumbs.html" %}
 {% endwith %}
-<div class="display-4">Event: {{event.name}}</div>
-<p>Active: {{event.active}}</p>
-<p>Child Mode: {{event.child_mode}}</p>
-<p>Date: {{event.date}}</p>
+<div class="display-4">Event: </div>
+<table>  
+    <thead>
+      <tr>
+        <th>
+          <div class="">
+            Name
+          </div>
+        </th>
+        <th>
+          <div class="">
+            Active
+          </div>
+        </th>
+        <th>
+          <div class="">
+            Child Mode
+          </div>
+        </th>
+        <th>
+          <div class="">
+            Date
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr> 
+                <td> 
+                    <p>{{event.name}} </p>
+                </td>
+                <td> 
+                    <p>{{event.active}} </p>
+                </td>
+                <td> 
+                    <p>{{event.child_mode}} </p>
+                </td>
+                <td> 
+                    <p>{{event.date}} </p>
+                </td>
+            </tr>
+    </tbody>
+  </table>
 
 <div class="display-4">Quizzes</div>
-<ul>
-  {% for q in quizzes %}
-  <li>
-    <a href="{% url 'admin:quiz_detail' quiz_id=q.id%}">
-      <h2>{{q.name}}</h2>
-    </a>
-  </li>
-  {% endfor %}
-</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>
+      Name
+      </th>
+      <th>
+      Timer
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for q in quizzes %}
+        <tr>
+        <td>
+            <a href="{% url 'admin:quiz_detail' quiz_id=q.id %}">
+                <p>{{q.name}} </p>
+            </a>
+        </td>
+        <td>
+            <p>{{q.timer}} </p>
+        </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 <a style="color: white" href="{% url "admin:event_edit" event_id=event.id%}"  class="btn btn-primary" role="button" >Edit</a>
 <a style="color: white" href="{% url "admin:event_delete" event_id=event.id%}"  class="btn btn-danger" role="button" >Delete</a>
  {% endblock %}
