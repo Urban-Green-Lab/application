@@ -227,7 +227,12 @@ class MyAdminSite(AdminSite):
 
     
 class QuizTakerAdmin(ModelAdmin):
-    # event = E
+    """
+    Display first, last name, email, event name, and event date
+    Filter by event
+    Select the users that should be downloaded
+    Disallow add and change on this view
+    """
     list_display = ['fname', 'lname', 'email', 'event', 'date']
     list_filter = ('event',)
     ordering = ['email', 'fname']
