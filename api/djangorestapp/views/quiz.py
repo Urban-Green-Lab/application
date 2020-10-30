@@ -25,5 +25,4 @@ def quiz_post(request):
 def quiz_detail(request, quiz_id=None):
     if quiz_id:
         quiz = get_object_or_404(QuizBank, pk=quiz_id)
-        print(quiz)
         return HttpResponse(f"Quiz {quiz_id}")

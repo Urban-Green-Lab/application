@@ -12,7 +12,7 @@ from .forms import (
 from django.conf.urls import url
 from .views import question_form, quiz_post, event_post, quiz_detail, event_detail
 import datetime
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponse
 import json
 
@@ -32,6 +32,8 @@ class MyAdminSite(AdminSite):
                 self.admin_view(self.question_view), name="question_detail"),
             url(r"questions/edit/(?P<question_id>\d+)/",
                 self.admin_view(self.question_view), name="question_edit"),
+            url(r"questions/delete/(?P<question_id>\d+)/",
+                self.admin_view(self.question_view), name="question_delete"),
             url("question_form/", question_form, name="question_form"),
         ]
 
@@ -71,7 +73,8 @@ class MyAdminSite(AdminSite):
 
     def question_view(self, request, question_id=None):
         action = request.get_full_path().split('/')[3]
-        print(action)
+        if question_id:
+            question = get_object_or_404(models.QuestionBank, pk=question_id)
         if action == "create":
             context = dict(
                 self.each_context(request),
@@ -86,11 +89,9 @@ class MyAdminSite(AdminSite):
             )
             return TemplateResponse(request, "question/form.html", context)
         if action == "detail":
-            question = get_object_or_404(models.QuestionBank, pk=question_id)
             answers = models.QuestionBankAnswer.objects.filter(
                 question_bank=question)
 
-            print(answers)
             context = dict(
                 self.each_context(request),
                 app_path=None,
@@ -109,8 +110,6 @@ class MyAdminSite(AdminSite):
             )
             return TemplateResponse(request, "question/list.html", context)
         if action == "edit":
-            question = get_object_or_404(
-                models.QuestionBank.objects.filter(pk=question_id))
             answer_inst = question.questionbankanswer_set.all()
             answers = [None, None, None, None]
             for i in range(len(answers)):
@@ -122,7 +121,6 @@ class MyAdminSite(AdminSite):
                 if answers[index]:
                     answer = answers[index].__dict__
                     del answer["_state"]
-                    print(answer)
                 return answer
             answers = [
                 get_answer(0),
@@ -148,6 +146,9 @@ class MyAdminSite(AdminSite):
 
             )
             return TemplateResponse(request, "question/form.html", context)
+        if action == "delete":
+            question.delete()
+            return redirect("admin:questions_list")
 
     def quizzes_view(self, request, quiz_id=None):
         action = request.get_full_path().split('/')[3]
@@ -170,7 +171,6 @@ class MyAdminSite(AdminSite):
             questions = [quizquestion.question_bank for quizquestion in models.QuizQuestion.objects.filter(
                 quiz_bank=quiz)]
 
-            print(questions)
             context = dict(
                 self.each_context(request),
                 app_path=None,

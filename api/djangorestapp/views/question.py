@@ -65,7 +65,7 @@ def question_form(request):
                     )
                     pass
 
-            return HttpResponse("Asdasdasasd")
+            return redirect('admin:question_detail', question_id=question_bank.id)
         else:
 
             question_bank = models.QuestionBank.objects.create(

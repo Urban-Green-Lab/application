@@ -29,5 +29,4 @@ def event_post(request):
 def event_detail(request, event_id=None):
     if event_id:
         event = get_object_or_404(Event, pk=event_id)
-        print(event)
         return HttpResponse(f"Quiz {event_id}")
