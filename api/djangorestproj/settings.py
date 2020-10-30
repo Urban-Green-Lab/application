@@ -23,10 +23,11 @@ is_prod = os.getenv('IS_HEROKU', False)
 if is_prod is False:
     import djangorestproj.hidden_keys
 
-# CORS_ORIGIN_WHITELIST = (
-#     # "FRONT_END_DOMAIN_URL",  # TCT_TODO: Update this link
-#     "*",  # TCT_TODO: Remove this localhost link
-# )
+CORS_ORIGIN_WHITELIST = (
+    # "FRONT_END_DOMAIN_URL",  # TCT_TODO: Update this link
+    "http://localhost:8000",  # TCT_TODO: Remove this localhost link
+    "http://localhost:3000",  # TCT_TODO: Remove this localhost link
+)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
