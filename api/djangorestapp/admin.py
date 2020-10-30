@@ -24,6 +24,7 @@ class MyAdminSite(AdminSite):
     index_title = None
     site_header = "Urban Green Lab Admin"
     site_title = "UGL Admin Portal"
+    site_url = "https://uglapp.netlify.app/"
 
     def get_urls(self):
         urls = super().get_urls()
