@@ -1,11 +1,11 @@
-{% extends "base.html" %} {% block content %}{% with app_path as path %}
-{% include "breadcrumbs.html" %}
-{% endwith %}
+{% extends "base.html" %} {% block content %}{% with app_path as path %} {%
+include "breadcrumbs.html" %} {% endwith %}
 
-<form action="{% url 'admin:question_form' %}" method="post">
+<form id="quiz-form" action="{% url 'admin:question_form' %}" method="post">
   {% csrf_token %} {{ question_form.as_p }}
   <hr />
   <div id="answer-forms" class="answers">
+    <div id="answer-error"> </div>
     {{ answer_form_1.as_table }}
     <br />
     {{ answer_form_2.as_table }}
@@ -17,6 +17,32 @@
 
   <input type="hidden" name="question_id" value="{{question.id}}" />
   <input type="hidden" name="answers" value="{{answers}}" />
-  <input type="submit" value="OK" />
+  <input type="submit" id="submit-button" value="OK" />
 </form>
+
+<script>
+  const inputs = $('input:checkbox');
+  const submit = $('#submit-button');
+  const error = $('#answer-error');
+  const checkChecks = () => {
+    let checked = 0;
+    for (input of inputs) {
+      if (input.checked) {
+        checked++;
+      }
+    }
+    if (checked == 0) {
+      submit.prop('disabled', true);
+      error.html('You have to select a correct answer');
+    } else if (checked > 1) {
+      submit.prop('disabled', true);
+      error.html('You can only select one correct answer');
+    } else {
+      submit.prop('disabled', false);
+    }
+  };
+  checkChecks();
+
+  inputs.change(checkChecks);
+</script>
 {% endblock %}

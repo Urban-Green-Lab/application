@@ -10,10 +10,9 @@ from .forms import (
     EventForm, EventQuizForm,
 )
 from django.conf.urls import url
-from .views import question_form, quiz_post, event_post, quiz_detail, event_detail
+from .views import question_form, quiz_post, event_post
 import datetime
 from django.shortcuts import get_object_or_404, redirect
-from django.http import HttpResponse
 import json
 
 

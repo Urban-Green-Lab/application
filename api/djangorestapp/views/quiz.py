@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from ..models import QuizBank, QuizQuestion, QuestionBank
 from django.shortcuts import get_object_or_404, redirect
 import json
@@ -21,9 +20,11 @@ def quiz_post(request):
                     index = int(key.split("-")[0][2:]) - 1
                     quiz_question_id = (quiz_question_ids[index])
                     if quiz_question_id:
-                        quiz_question = get_object_or_404(QuizQuestion, pk=quiz_question_id)
+                        quiz_question = get_object_or_404(
+                            QuizQuestion, pk=quiz_question_id)
                         if value:
-                            question = get_object_or_404(QuestionBank, pk=int(value))
+                            question = get_object_or_404(
+                                QuestionBank, pk=int(value))
                             quiz_question.question_bank = question
                             quiz_question.save()
                         else:
@@ -31,12 +32,12 @@ def quiz_post(request):
                     else:
                         # create
                         if value:
-                            question = get_object_or_404(QuestionBank, pk=int(value))
+                            question = get_object_or_404(
+                                QuestionBank, pk=int(value))
                             QuizQuestion.objects.create(
                                 quiz_bank=quiz,
                                 question_bank=question
                             )
-                    
 
             return redirect('admin:quiz_detail', quiz_id=quiz.id)
         else:
@@ -55,9 +56,3 @@ def quiz_post(request):
                     )
 
             return redirect('admin:quiz_detail', quiz_id=quiz_bank.id)
-
-
-def quiz_detail(request, quiz_id=None):
-    if quiz_id:
-        quiz = get_object_or_404(QuizBank, pk=quiz_id)
-        return HttpResponse(f"Quiz {quiz_id}")

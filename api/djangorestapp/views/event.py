@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from ..models import Event, EventQuiz, QuizBank
 import datetime
 from django.shortcuts import redirect, get_object_or_404
