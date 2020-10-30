@@ -5,7 +5,6 @@
     "fields": {
       "question": "Which energy source do we use the most for electricity in Tennessee?",
       "info_link": "google.com",
-      "value": 1
     }
   },
   {
@@ -14,7 +13,6 @@
     "fields": {
       "question": "WWhat percentage of food in the US goes uneaten?",
       "info_link": "google.com",
-      "value": 1
     }
   },
   {
@@ -23,7 +21,6 @@
     "fields": {
       "question": "Which of these is an effective way to reduce your carbon footprint?",
       "info_link": "google.com",
-      "value": 1
     }
   },
   {
@@ -32,7 +29,6 @@
     "fields": {
       "question": "What sector was the largest source of greenhouse gas emissions in 2017?",
       "info_link": "google.com",
-      "value": 1
     }
   },
   {
@@ -41,7 +37,6 @@
     "fields": {
       "question": "Food waste that decomposes in a landfill releases ______, a greenhouse gas almost 25 times more harmful to the atmosphere than carbon dioxide?",
       "info_link": "google.com",
-      "value": 1
     }
   },
   {
