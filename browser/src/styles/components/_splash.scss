@@ -1,0 +1,42 @@
+p {
+  font-size: 13px;
+  margin-bottom: 0;
+  z-index: 1;
+}
+
+img {
+  z-index: 1;
+}
+
+.splash {
+  background: rgb(246, 233, 242);
+  background: linear-gradient(
+    0deg,
+    rgba(246, 233, 242, 1) 0%,
+    rgba(245, 204, 137, 1) 100%
+  );
+  @media only screen and (min-width: 800px) {
+    height: 100vh;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.question {
+  margin-bottom: 20px;
+  width: 90px;
+}
+
+.sustaingame-img {
+  margin-bottom: 20px;
+  max-width: 315px;
+  width: 100%;
+}
+
+.ugl-logo {
+  margin-bottom: 60px;
+  max-width: 100%;
+  width: 180px;
+}

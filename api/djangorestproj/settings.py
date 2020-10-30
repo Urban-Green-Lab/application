@@ -26,6 +26,9 @@ if is_prod is False:
 CORS_ORIGIN_WHITELIST = (
     # "FRONT_END_DOMAIN_URL",  # TCT_TODO: Update this link
     "http://localhost:8000",  # TCT_TODO: Remove this localhost link
+    "http://localhost:3000",  # TCT_TODO: Remove this localhost link
+    "https://uglapp.netlify.app",
+    "https://deploy-preview-85--uglapp.netlify.app"
 )
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -37,7 +40,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', "test")
 DEBUG = not is_prod
 
 # TCT_TODO: Remove this localhost link
-ALLOWED_HOSTS = ["localhost", "sustaingame-admin.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "sustaingame-admin.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
@@ -50,8 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'djangorestapp',
-    'safedelete',
     'corsheaders',
+    'rest_framework'
 
 ]
 

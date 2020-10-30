@@ -1,0 +1,57 @@
+.modal-header {
+  .close {
+    padding: 0 0 5px 0;
+    margin: 0;
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    border-radius: 100px;
+    color: #fff;
+    opacity: 1;
+  }
+
+  border-bottom: 0;
+}
+
+.modal-body {
+  padding: 30px;
+  h1 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  p {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    margin: 20px 0 40px;
+  }
+  .sustaingame-img {
+    display: block;
+    margin: 0 auto 40px;
+    max-width: 120px;
+  }
+
+  .modal-number {
+    display: block;
+    width: 56px;
+    margin: 0 auto;
+  }
+}
+
+.modal-dialog {
+  margin: 15px;
+  box-shadow: 0px 0px 44px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 0px 44px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 44px 0px rgba(0, 0, 0, 0.1);
+}
+
+.modal-container {
+  z-index: 1;
+}
+
+@media only screen and (min-width: 575px) {
+  .modal-dialog {
+    margin: 60px auto;
+  }
+}

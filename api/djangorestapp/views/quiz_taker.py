@@ -83,4 +83,4 @@ class QuizTakerSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuizTaker
         fields = ["email", "fname", "lname", "event",
-                  "quiz_bank", "score", "initials"]
+                  "quiz_bank", "score", "initials", "zip_code"]

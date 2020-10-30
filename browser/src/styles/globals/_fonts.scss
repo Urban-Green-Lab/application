@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "GT Walsheim Pro Black";
+  src: url(../fonts/GT-Walsheim-Pro-Black.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Domaine Text Bold";
+  src: url(../fonts/DomaineText-Bold.otf) format("opentype");
+}
+
+@import "https://fonts.googleapis.com/css2?family=Roboto&display=swap";
+
+p {
+  font-family: "Domaine Text Bold";
+}
+
 h1 {
-  color: $font-main;
+  font-family: "GT Walsheim Pro Black";
 }

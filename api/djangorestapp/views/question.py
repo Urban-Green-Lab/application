@@ -31,8 +31,6 @@ def question_form(request):
         question_info = {
             "id": data.get("question_id", None),
             "question": data.get("question", None),
-            "image": data.get("image", None),
-            "value": int(data.get("value", None)),
             "info_link": data.get("info_link", None)
         }
 
@@ -41,8 +39,6 @@ def question_form(request):
                 models.QuestionBank, pk=question_info["id"])
 
             question_bank.question = question_info["question"]
-            question_bank.image = question_info["image"]
-            question_bank.value = question_info["value"]
             question_bank.info_link = question_info["info_link"]
             question_bank.save()
             answer_ids = json.loads(data.get("answers"))
@@ -70,8 +66,6 @@ def question_form(request):
 
             question_bank = models.QuestionBank.objects.create(
                 question=question_info["question"],
-                image=question_info["image"],
-                value=question_info["value"],
                 info_link=question_info["info_link"],
             )
 
