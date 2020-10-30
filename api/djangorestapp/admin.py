@@ -1,3 +1,4 @@
+from django.contrib.admin.options import ModelAdmin
 from . import models
 from django.contrib.admin import AdminSite
 from django.template.response import TemplateResponse
@@ -15,6 +16,7 @@ import datetime
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponse
 import json
+import csv
 
 
 class MyAdminSite(AdminSite):
@@ -232,6 +234,46 @@ class MyAdminSite(AdminSite):
         if action == "edit":
             pass
 
+    
+class QuizTakerAdmin(ModelAdmin):
+    """
+    Display first, last name, email, event name, and event date
+    Filter by event
+    Select the users that should be downloaded
+    Disallow add and change on this view
+    """
+    list_display = ['fname', 'lname', 'email', 'event', 'date']
+    list_filter = ('event',)
+    ordering = ['email', 'fname']
+    actions = ['export_as_csv']
+    
+
+    def date(self, quiz_taker):
+        return quiz_taker.event.date
+
+    def has_add_permission(self, request, obj=None):
+        return False
+    
+    def has_change_permission(self, request, obj=None):
+        return False
+    
+    def export_as_csv(self, request, queryset):
+
+        meta = self.model._meta
+        field_names = [field.name for field in meta.fields]
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
+        writer = csv.writer(response)
+
+        writer.writerow(field_names)
+        for obj in queryset:
+            row = writer.writerow([getattr(obj, field) for field in field_names])
+
+        return response
+
+    export_as_csv.short_description = "Export Selected As CSV"
+
 
 admin_site = MyAdminSite(name='myadmin')
 # admin_site.index_template = 'sometemplate.html'
@@ -243,4 +285,4 @@ admin_site.register(models.QuestionBankAnswer)
 admin_site.register(models.QuestionBank)
 admin_site.register(models.QuizBank)
 admin_site.register(models.QuizQuestion)
-admin_site.register(models.QuizTaker)
+admin_site.register(models.QuizTaker, QuizTakerAdmin)
