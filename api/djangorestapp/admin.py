@@ -25,7 +25,9 @@ class MyAdminSite(AdminSite):
         urls = super().get_urls()
         question_urls = [
             url('questions/create',
-                self.admin_view(self.question_view), name="questions"),
+                self.admin_view(self.question_view), name="questions_create"),
+            url('questions/list',
+                self.admin_view(self.question_view), name="questions_list"),
             url(r"questions/detail/(?P<question_id>\d+)/",
                 self.admin_view(self.question_view), name="question_detail"),
             url(r"questions/edit/(?P<question_id>\d+)/",
@@ -69,6 +71,7 @@ class MyAdminSite(AdminSite):
 
     def question_view(self, request, question_id=None):
         action = request.get_full_path().split('/')[3]
+        print(action)
         if action == "create":
             context = dict(
                 self.each_context(request),
@@ -97,7 +100,14 @@ class MyAdminSite(AdminSite):
             )
             return TemplateResponse(request, "question/detail.html", context)
         if action == "list":
-            pass
+            questions = models.QuestionBank.objects.all()
+            context = dict(
+                self.each_context(request),
+                app_path=None,
+                username=request.user.get_username(),
+                questions=questions,
+            )
+            return TemplateResponse(request, "question/list.html", context)
         if action == "edit":
             question = get_object_or_404(
                 models.QuestionBank.objects.filter(pk=question_id))
