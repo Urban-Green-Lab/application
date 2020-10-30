@@ -3,7 +3,7 @@ from safedelete.models import SafeDeleteModel
 from safedelete.models import HARD_DELETE_NOCASCADE
 
 
-class QuizBank(SafeDeleteModel):
+class QuizBank(models.Model):
     """Quiz Bank Model
 
     Description: Stores a single quiz for the quiz bank
@@ -15,8 +15,7 @@ class QuizBank(SafeDeleteModel):
     - timer = `IntegerField` in minutes
     """
     # Added this because the important quiz_taker model uses
-    _safedelete_policy = HARD_DELETE_NOCASCADE
-
+    # _safedelete_policy = HARD_DELETE_NOCASCADE
     name = models.CharField(max_length=255)
     timer = models.IntegerField()
 
