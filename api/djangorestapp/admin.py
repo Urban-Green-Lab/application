@@ -44,6 +44,10 @@ class MyAdminSite(AdminSite):
                 name="quizzes_list"),
             url(r"quizzes/detail/(?P<quiz_id>\d+)/",
                 self.admin_view(self.quizzes_view), name="quiz_detail"),
+            url(r"quizzes/edit/(?P<quiz_id>\d+)/",
+                self.admin_view(self.quizzes_view), name="quiz_edit"),
+            url(r"quizzes/delete/(?P<quiz_id>\d+)/",
+                self.admin_view(self.quizzes_view), name="quiz_delete"),
             url("quiz_post/", quiz_post, name="quiz_post"),
         ]
 
@@ -155,24 +159,25 @@ class MyAdminSite(AdminSite):
             question.delete()
             return redirect("admin:questions_list")
 
-    def quizzes_view(self, request, quiz_id=None):
+    def quizzes_view(self, request, quiz_id=None, question_num=10):
         action = request.get_full_path().split('/')[3]
+        if quiz_id:
+            quiz = get_object_or_404(models.QuizBank, pk=quiz_id)
+
         if action == "create":
+            questions = [None] * question_num
+            questions = [QuizQuestionForm(
+                prefix=f"qq{num + 1}",) for num in range(len(questions))]
             context = dict(
                 self.each_context(request),
                 app_path=None,
                 username=request.user.get_username(),
                 quiz_form=QuizBankForm(),
-                quiz_question_form_1=QuizQuestionForm(prefix="qq1"),
-                quiz_question_form_2=QuizQuestionForm(prefix="qq2"),
-                quiz_question_form_3=QuizQuestionForm(prefix="qq3"),
-                quiz_question_form_4=QuizQuestionForm(prefix="qq4"),
-                quiz_question_form_5=QuizQuestionForm(prefix="qq5"),
+                quiz_question_forms=questions
 
             )
             return TemplateResponse(request, "quiz/form.html", context)
         if action == "detail":
-            quiz = get_object_or_404(models.QuizBank, pk=quiz_id)
             questions = [quizquestion.question_bank for quizquestion in models.QuizQuestion.objects.filter(
                 quiz_bank=quiz)]
 
@@ -194,8 +199,39 @@ class MyAdminSite(AdminSite):
             )
             return TemplateResponse(request, "quiz/list.html", context)
         if action == "edit":
-            pass
+            question_inst = quiz.quizquestion_set.all()
+            orig_questions = [None] * question_num
+            for i in range(len(orig_questions)):
+                if question_inst.count() > i:
+                    orig_questions[i] = question_inst[i]
 
+            def get_question(index):
+                question = None
+                if orig_questions[index]:
+                    question = orig_questions[index].question_bank_id
+                return question
+
+            questions = [QuizQuestionForm(
+                prefix=f"qq{num + 1}", initial={"question_bank": get_question(num)}) for num in range(len(orig_questions))]
+
+            quiz_question_ids = orig_questions
+            for i in range(len(quiz_question_ids)):
+                if quiz_question_ids[i]:
+                    quiz_question_ids[i] = quiz_question_ids[i].id
+
+            context = dict(
+                self.each_context(request),
+                app_path=None,
+                username=request.user.get_username(),
+                quiz_form=QuizBankForm(initial=quiz.__dict__),
+                quiz_question_forms=questions,
+                quiz=quiz,
+                quiz_question_ids=json.dumps(quiz_question_ids)
+            )
+            return TemplateResponse(request, "quiz/form.html", context)
+        if action == "delete":
+            quiz.delete()
+            return redirect("admin:quizzes_list")
     def events_view(self, request, event_id=None):
         action = request.get_full_path().split('/')[3]
         if action == "create":

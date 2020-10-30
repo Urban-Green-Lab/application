@@ -13,5 +13,6 @@
         </li>
     {% endfor %}
     </ul>
-{% comment %} <a style="color: white" href="{% url "admin:question_edit" question_id=question.id%}"  class="btn btn-primary" role="button" >Edit</a> {% endcomment %}
+<a style="color: white" href="{% url "admin:quiz_edit" quiz_id=quiz.id%}"  class="btn btn-primary" role="button" >Edit</a>
+<a style="color: white" href="{% url "admin:quiz_delete" quiz_id=quiz.id%}"  class="btn btn-danger" role="button" >Delete</a>
 {% endblock %}

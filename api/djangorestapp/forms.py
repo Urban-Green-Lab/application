@@ -25,7 +25,8 @@ class QuizBankForm(forms.ModelForm):
 
 
 class QuizQuestionForm(forms.ModelForm):
-    question_bank = forms.ModelChoiceField(queryset=QuestionBank.objects.all(), label="Question")
+    question_bank = forms.ModelChoiceField(
+        queryset=QuestionBank.objects.all(), label="Question", required=False)
 
     class Meta:
         model = QuizQuestion

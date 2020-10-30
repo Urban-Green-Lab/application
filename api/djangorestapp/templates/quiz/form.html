@@ -1,14 +1,12 @@
 {% extends "base.html" %} {% block content %}
 
 <form action="{% url 'admin:quiz_post' %}" method="post">
-  {% csrf_token %} 
-  {{quiz_form.as_p}}
+  {% csrf_token %} {{quiz_form.as_p}}
   <hr/>
-  {{quiz_question_form_1.as_p}}
-  {{quiz_question_form_2.as_p}}
-  {{quiz_question_form_3.as_p}}
-  {{quiz_question_form_4.as_p}}
-  {{quiz_question_form_5.as_p}}
+  {% for question in quiz_question_forms %} {{question.as_p}} {% endfor %}
   <input type="submit" value="OK" />
+  <input type="hidden" name="quiz_id" value="{{quiz.id}}" />
+  <input type="hidden" name="quiz_question_ids" value="{{quiz_question_ids}}" />
+  
 </form>
 {% endblock %}
