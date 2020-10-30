@@ -1,0 +1,10 @@
+{% block breadcrumbs%}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+
+    <li class="breadcrumb-item"><a href={% url "admin:index"%}>Home</a></li>
+    <li class="breadcrumb-item"><a href="/admin/{{path.2}}/list">{{path.2|title}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{path.3|title}} View</li>
+  </ol>
+</nav>
+{% endblock %}

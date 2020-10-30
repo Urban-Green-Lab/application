@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block content %}{% with app_path as path %}
+{% include "breadcrumbs.html" %}
+{% endwith %}
+
+<form action="{% url 'admin:quiz_post' %}" method="post">
+  {% csrf_token %} {{quiz_form.as_p}}
+  <hr/>
+  {% for question in quiz_question_forms %} {{question.as_p}} {% endfor %}
+  <input type="submit" value="OK" />
+  <input type="hidden" name="quiz_id" value="{{quiz.id}}" />
+  <input type="hidden" name="quiz_question_ids" value="{{quiz_question_ids}}" />
+  
+</form>
+{% endblock %}
