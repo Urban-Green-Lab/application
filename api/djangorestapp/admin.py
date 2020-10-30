@@ -38,15 +38,19 @@ class MyAdminSite(AdminSite):
         ]
 
         quiz_urls = [
-            url("quizzes/create", self.admin_view(self.quizzes_view), name="quizzes_create"),
-            url("quizzes/list", self.admin_view(self.quizzes_view), name="quizzes_list"),
+            url("quizzes/create", self.admin_view(self.quizzes_view),
+                name="quizzes_create"),
+            url("quizzes/list", self.admin_view(self.quizzes_view),
+                name="quizzes_list"),
             url(r"quizzes/detail/(?P<quiz_id>\d+)/",
                 self.admin_view(self.quizzes_view), name="quiz_detail"),
             url("quiz_post/", quiz_post, name="quiz_post"),
         ]
 
         event_urls = [
-            url("events/create", self.admin_view(self.events_view), name="events"),
+            url("events/create", self.admin_view(self.events_view),
+                name="events_list"),
+            url("events/list", self.admin_view(self.events_view), name="events_list"),
             url(r"events/detail/(?P<event_id>\d+)/",
                 self.admin_view(self.events_view), name="event_detail"),
             url("event_post/", event_post, name="event_post"),
@@ -54,6 +58,7 @@ class MyAdminSite(AdminSite):
 
         other_urls = [
             path('help/', self.admin_view(self.help_view)),
+            # path('csv_info/', self.admin_view(self.csv_info)),
         ]
         urls += (
             event_urls
@@ -217,7 +222,14 @@ class MyAdminSite(AdminSite):
             )
             return TemplateResponse(request, "event/detail.html", context)
         if action == "list":
-            pass
+            events = models.Event.objects.all()
+            context = dict(
+                self.each_context(request),
+                app_path=None,
+                username=request.user.get_username(),
+                events=events,
+            )
+            return TemplateResponse(request, "event/list.html", context)
         if action == "edit":
             pass
 
