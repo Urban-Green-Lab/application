@@ -1,17 +1,20 @@
 {% extends "base.html" %} {% block content %}
 
-<div>
-  <h1 class="display-1">How to get Started</h1>
+<div class="container">
+  <h1 class="turotial_title">How to get Started</h1>
   <ol>
-    <li class="display-4">Add questions to the question bank</li>
-    <li class="display-4">Create quizzes from the questions</li>
-    <li class="display-4">Schedule events with a quiz</li>
-    <li class="display-4">To download a csv of players, click on View Quiz Takers. 
-      List can be filtered by event. Click select or select all rows of what 
-      information you want to download. Then in the action dropdown select download csv and click go</li>
+    <li class="turotial_item">Add questions to the question bank</li>
+    <li class="turotial_item">Create quizzes from the questions</li>
+    <li class="turotial_item">Schedule events with a quiz</li>
+    <li class="turotial_item">To download a csv of players, click on View Quiz Takers.
+    <ul>
+      <li class="turotial_item_item">List can be filtered by event.</li>
+      <li class="turotial_item_item">Click select or select all rows of what 
+      information you want to download.</li>
+      <li class="turotial_item_item">Then in the action dropdown select download csv and click go</li>
+    </ul> 
+        </li>
   </ol>
 </div>
-<script>
-  console.log('{{app_path}}');
-</script>
+</div>
 {% endblock %}

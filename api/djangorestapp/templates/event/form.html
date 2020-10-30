@@ -1,11 +1,16 @@
 {% extends "base.html" %} {% block content %} {% with app_path as path %}
 {% include "breadcrumbs.html" %}
 {% endwith %}
-<form action="{% url 'admin:event_post' %}" method="post">
+<div class="container">
+
+<form action="{% url 'admin:event_post' %}" method="post" class="form">
+ <div class="display-4"
+    >{% if quiz.id%} Edit {% else %} Create {% endif %}Event</div
+  >
   {% csrf_token %} {{ question_form.as_p }}
   <hr />
   {{ event_form.as_p }}
-  <div style="width: 250px">
+  <div >
     Date: <input name="date" value="{{date}}" id="datepicker" />
   </div>
   <br />
@@ -20,5 +25,5 @@
     $('#datepicker').datepicker();
   </script>
 </form>
-
+  </div>
 {% endblock %}

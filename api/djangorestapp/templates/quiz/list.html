@@ -1,15 +1,35 @@
-{% extends "base.html" %} 
+{% extends "base.html" %} {% block content %}{% with app_path as path %} 
+{% include "breadcrumbs.html" %} {% endwith %}
+<div class="container"> 
 
-{% block content %}{% with app_path as path %}
-{% include "breadcrumbs.html" %}
-{% endwith %}
-    <div class="display-4">Quizzes</div>
-
-    <ul>
+<div class="display-4">Quizzes </div>
+<table>
+  <thead>
+    <tr>
+      <th>
+      Name
+      </th>
+      <th>
+      Timer
+      </th>
+    </tr>
+  </thead>
+  <tbody>
     {% for q in quizzes %}
-        <li> <a href="{% url 'admin:quiz_detail' quiz_id=q.id %}"><p>{{q.name}} </p></a></li>
+        <tr>
+        <td>
+            <a href="{% url 'admin:quiz_detail' quiz_id=q.id %}">
+                <p>{{q.name}} </p>
+            </a>
+        </td>
+        <td>
+            <p>{{q.timer}} </p>
+        </td>
+        </tr>
     {% endfor %}
-    </ul>
+  </tbody>
+</table>
+</div>
 
 
 {% endblock %}
