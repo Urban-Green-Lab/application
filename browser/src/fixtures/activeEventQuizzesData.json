@@ -7,7 +7,6 @@
     "questions": [
       {
         "question": "Which energy source do we use the most for electricity in Tennessee?",
-        "image": "https://picsum.photos/1000/600",
         "question_id": 1,
         "value": 1,
         "answers": [
@@ -35,7 +34,6 @@
       },
       {
         "question": "What percentage of food in the US goes uneaten?",
-        "image": "https://picsum.photos/1000/600",
         "question_id": 2,
         "value": 1,
         "answers": [
@@ -59,7 +57,6 @@
       },
       {
         "question": "Which of these is an effective way to reduce your carbon footprint?",
-        "image": "https://picsum.photos/1000/600",
         "question_id": 3,
         "value": 1,
         "answers": [
@@ -83,7 +80,6 @@
       },
       {
         "question": "What sector was the largest source of greenhouse gas emissions in 2017?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 4,
         "answers": [
@@ -107,7 +103,6 @@
       },
       {
         "question": "Food waste that decomposes in a landfill releases ______, a greenhouse gas almost 25 times more harmful to the atmosphere than carbon dioxide?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 5,
         "answers": [
@@ -139,7 +134,6 @@
     "questions": [
       {
         "question": "Which of the following household appliances uses the most energy?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 6,
         "answers": [
@@ -163,7 +157,6 @@
       },
       {
         "question": "LED light bulbs use ______ less energy than a typical incandescent light bulb.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 7,
         "answers": [
@@ -187,7 +180,6 @@
       },
       {
         "question": "____________ can add $100 per year to the energy bill of the average American household through wasted energy.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 8,
         "answers": [
@@ -211,7 +203,6 @@
       },
       {
         "question": "What percent of Nashville’s residential landfill is made up of food scraps and yard clippings?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 9,
         "answers": [
@@ -235,7 +226,6 @@
       },
       {
         "question": "How many gallons of water can a leaky faucet waste in one year?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 10,
         "answers": [
@@ -259,7 +249,6 @@
       },
       {
         "question": "The average person in Tennessee uses about ________ gallons of water per day?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 11,
         "answers": [
@@ -283,7 +272,6 @@
       },
       {
         "question": "Where does most of our drinking water come from in Nashville?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 12,
         "answers": [
@@ -307,7 +295,6 @@
       },
       {
         "question": "On average, households waste what percentage of their food purchases?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 13,
         "answers": [
@@ -339,7 +326,6 @@
     "questions": [
       {
         "question": "Recycling 1 ton of paper saves __________.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 14,
         "answers": [
@@ -363,7 +349,6 @@
       },
       {
         "question": "The average office worker uses __________ sheets of copy paper each year.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 15,
         "answers": [
@@ -387,7 +372,6 @@
       },
       {
         "question": "156 is the number of_______ that the average office worker uses each year.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 16,
         "answers": [
@@ -411,7 +395,6 @@
       },
       {
         "question": "30% of all print jobs are never even picked up from the copier.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 17,
         "answers": [
@@ -427,7 +410,6 @@
       },
       {
         "question": "20-30% of the average person's waste in a day consists of food scraps. Over the course of a month, the average person throws out around ___ pounds of food.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 18,
         "answers": [
@@ -451,7 +433,6 @@
       },
       {
         "question": "Companies with sustainability programs enjoy positive brand image as well as increased ____ among employees?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 19,
         "answers": [
@@ -475,7 +456,6 @@
       },
       {
         "question": "Which of these items can be composted?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 20,
         "answers": [
@@ -499,7 +479,6 @@
       },
       {
         "question": "Of the energy used annually in the US, approximately 5 percent is consumed by __________power.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 21,
         "answers": [
@@ -531,7 +510,6 @@
     "questions": [
       {
         "question": "It’s estimated that nearly 480,000 school buses carry ___ million students to and from school every day of the school year.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 22,
         "answers": [
@@ -555,7 +533,6 @@
       },
       {
         "question": "Nationally, schools waste $5 million per day in uneaten food.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 23,
         "answers": [
@@ -571,7 +548,6 @@
       },
       {
         "question": "A recent study by the World Wildlife Fund estimated that as much as 45 million __________ were wasted in schools during 2019.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 24,
         "answers": [
@@ -595,7 +571,6 @@
       },
       {
         "question": "Organics (including food) make up about 50% of a school&#39;s waste stream. What is the second leading component of a school&#39;s waste?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 25,
         "answers": [
@@ -619,7 +594,6 @@
       },
       {
         "question": "Of the more than 320 million people in America, what percentage go to a school in a day?",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 26,
         "answers": [
@@ -643,7 +617,6 @@
       },
       {
         "question": "Poor ____________ in schools can cause discomfort and contribute to short- and long-term health problems for students and staff.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 27, 
         "answers": [
@@ -667,7 +640,6 @@
       },
       {
         "question": "K-12 schools in the U.S. spend over $6 billion a year on _________",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 28,
         "answers": [
@@ -691,7 +663,6 @@
       },
       {
         "question": "Schools with __________reported significant increases in test scores, and progression in reading and math.",
-        "image": "https://picsum.photos/1000/600",
         "value": 1,
         "question_id": 29,
         "answers": [
