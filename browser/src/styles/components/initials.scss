@@ -1,8 +1,46 @@
+.initialsWrapper {
+    background: rgb(246, 233, 242);
+    background: linear-gradient(
+        0deg,
+        rgba(246, 233, 242, 1) 0%,
+        rgba(245, 204, 137, 1) 100%
+    );
+    padding-top: 5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
 .initialsContainer {
-    background-color: $background;
     color: $font-main;
-    margin-top: 3rem;
-    margin: 1rem;
+    background-color: $white;
+    border-radius: 20px;
+    margin: 0 auto 40px auto;
+    padding: 40px 30px 40px;
+    width: 100%;
+    max-width: 450px;
+
+    input-label {
+        margin: 1rem 0;
+    }
+    
+    h3 {
+        font-family: "GT Walsheim Pro Black";
+        margin-bottom: 2rem;
+    }
+
+    .text-small {
+        font-size: 50%;
+    }
+
+    .form-control {
+        border: 4px solid $asphalt-black;
+        border-radius: 0;
+        height: 56px;
+    }
 
     .score {
         font-size: 60px;
@@ -12,11 +50,14 @@
     .scoreText {
       font-weight: bold;
       text-align: center;
+      font-family: "GT Walsheim Pro Black";
+    }
+    .btn-container {
+        text-align: right;
     }
     .closeBtn {
         color: $font-main;
         background-color: transparent;
-        margin-left: 70%;
         width:50px;
         padding: 0%;
         border: none;
@@ -26,4 +67,4 @@
         background-color: $font-main;
         height: 1px;
     }
-  }
+}
