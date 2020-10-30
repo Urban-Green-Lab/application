@@ -16,11 +16,14 @@ import datetime
 from django.shortcuts import get_object_or_404, redirect
 import json
 import csv
+from django.http import HttpResponse
 
 
 class MyAdminSite(AdminSite):
     index_template = "tutorial.html"
     index_title = None
+    site_header = "Urban Green Lab Admin"
+    site_title = "UGL Admin Portal"
 
     def get_urls(self):
         urls = super().get_urls()
@@ -336,13 +339,12 @@ class QuizTakerAdmin(ModelAdmin):
 
 
 admin_site = MyAdminSite(name='myadmin')
-# admin_site.index_template = 'sometemplate.html'
 # Register your models here.
 
-admin_site.register(models.EventQuiz)
-admin_site.register(models.Event)
-admin_site.register(models.QuestionBankAnswer)
-admin_site.register(models.QuestionBank)
-admin_site.register(models.QuizBank)
-admin_site.register(models.QuizQuestion)
+# admin_site.register(models.EventQuiz)
+# admin_site.register(models.Event)
+# admin_site.register(models.QuestionBankAnswer)
+# admin_site.register(models.QuestionBank)
+# admin_site.register(models.QuizBank)
+# admin_site.register(models.QuizQuestion)
 admin_site.register(models.QuizTaker, QuizTakerAdmin)
