@@ -38,7 +38,8 @@ class MyAdminSite(AdminSite):
         ]
 
         quiz_urls = [
-            url("quizzes/create", self.admin_view(self.quizzes_view), name="quizzes"),
+            url("quizzes/create", self.admin_view(self.quizzes_view), name="quizzes_create"),
+            url("quizzes/list", self.admin_view(self.quizzes_view), name="quizzes_list"),
             url(r"quizzes/detail/(?P<quiz_id>\d+)/",
                 self.admin_view(self.quizzes_view), name="quiz_detail"),
             url("quiz_post/", quiz_post, name="quiz_post"),
@@ -180,7 +181,14 @@ class MyAdminSite(AdminSite):
             )
             return TemplateResponse(request, "quiz/detail.html", context)
         if action == "list":
-            pass
+            quizzes = models.QuizBank.objects.all()
+            context = dict(
+                self.each_context(request),
+                app_path=None,
+                username=request.user.get_username(),
+                quizzes=quizzes,
+            )
+            return TemplateResponse(request, "quiz/list.html", context)
         if action == "edit":
             pass
 

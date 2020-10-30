@@ -1,0 +1,13 @@
+{% extends "base.html" %} 
+
+{% block content %}
+    <div class="display-4">Quizzes</div>
+
+    <ul>
+    {% for q in quizzes %}
+        <li> <a href="{% url 'admin:quiz_detail' quiz_id=q.id %}"><p>{{q.name}} </p></a></li>
+    {% endfor %}
+    </ul>
+
+
+{% endblock %}
