@@ -31,6 +31,6 @@
   </table>
   <div class="button-group">
 <a style="color: white" href="{% url "admin:quiz_edit" quiz_id=quiz.id%}"  class="btn btn-primary edit-button" role="button" >Edit</a>
-<a style="color: white" href="{% url "admin:quiz_delete" quiz_id=quiz.id%}"  class="btn btn-danger delete-button" role="button" >Delete</a> <div class="delete-helper">If you delete a quiz, any quiz taker associated with it will be removed!</div></div>
+<a style="color: white" href="{% url "admin:quiz_delete" quiz_id=quiz.id%}"  class="btn btn-danger delete-button" role="button" >Delete</a> </div><div class="delete-helper">If you delete a quiz, any quiz taker associated with it will be removed!</div>
 </div>
 {% endblock %}

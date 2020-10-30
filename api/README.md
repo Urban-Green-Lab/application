@@ -35,7 +35,6 @@
     {
       "question": "varchar",
       "question_id": "int",
-      "value": "int",
       "answers": [
         {
           "answer": "varchar",
