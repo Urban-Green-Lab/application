@@ -10,11 +10,8 @@ class QuestionForm(forms.ModelForm):
 
 
 class QuestionBankAnswerForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        # first call parent's constructor
-        super(QuestionBankAnswerForm, self).__init__(*args, **kwargs)
-        # there's a `fields` property now
-        self.fields['answer'].required = False
+
+    answer = forms.CharField(required=False)
 
     class Meta:
         model = QuestionBankAnswer
@@ -28,11 +25,7 @@ class QuizBankForm(forms.ModelForm):
 
 
 class QuizQuestionForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        # first call parent's constructor
-        super(QuizQuestionForm, self).__init__(*args, **kwargs)
-        # there's a `fields` property now
-        self.fields['question_bank'].required = False
+    question_bank = forms.ModelChoiceField(queryset=QuestionBank.objects.all(), label="Question")
 
     class Meta:
         model = QuizQuestion

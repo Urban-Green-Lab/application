@@ -8,6 +8,6 @@
         <li> <h2>{{a.answer}} {% if a.is_correct%}(Correct Answer){% endif %}</h2></li>
     {% endfor %}
     </ul>
-    <button type="button" class="btn btn-primary">Edit</button>
+    <a style="color: white" href="{% url "admin:question_edit" question_id=question.id%}"  class="btn btn-primary" role="button" >Edit</a>
 
 {% endblock %}

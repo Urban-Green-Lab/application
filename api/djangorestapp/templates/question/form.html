@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
-<form action="{% url 'admin:question_post' %}" method="post">
+<form action="{% url 'admin:question_form' %}" method="post">
   {% csrf_token %} {{ question_form.as_p }}
   <hr />
   <div id="answer-forms" class="answers">
@@ -13,6 +13,8 @@
     {{ answer_form_4.as_table }}
   </div>
 
+  <input type="hidden" name="question_id" value="{{question.id}}" />
+  <input type="hidden" name="answers" value="{{answers}}" />
   <input type="submit" value="OK" />
 </form>
 {% endblock %}

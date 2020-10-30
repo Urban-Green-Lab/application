@@ -13,6 +13,5 @@
         </li>
     {% endfor %}
     </ul>
-    <button type="button" class="btn btn-primary">Edit</button>
-
+{% comment %} <a style="color: white" href="{% url "admin:question_edit" question_id=question.id%}"  class="btn btn-primary" role="button" >Edit</a> {% endcomment %}
 {% endblock %}

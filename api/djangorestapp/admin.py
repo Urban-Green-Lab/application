@@ -10,9 +10,11 @@ from .forms import (
     EventForm, EventQuizForm,
 )
 from django.conf.urls import url
-from .views import question_post, quiz_post, event_post, quiz_detail, event_detail
+from .views import question_form, quiz_post, event_post, quiz_detail, event_detail
 import datetime
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
+import json
 
 
 class MyAdminSite(AdminSite):
@@ -21,28 +23,40 @@ class MyAdminSite(AdminSite):
 
     def get_urls(self):
         urls = super().get_urls()
-
-        urls += [
-            # Question Paths
+        question_urls = [
             url('questions/create',
                 self.admin_view(self.question_view), name="questions"),
             url(r"questions/detail/(?P<question_id>\d+)/",
                 self.admin_view(self.question_view), name="question_detail"),
-            url("question_post/", question_post, name="question_post"),
+            url(r"questions/edit/(?P<question_id>\d+)/",
+                self.admin_view(self.question_view), name="question_edit"),
+            url("question_form/", question_form, name="question_form"),
+        ]
 
+        quiz_urls = [
             url("quizzes/create", self.admin_view(self.quizzes_view), name="quizzes"),
             url(r"quizzes/detail/(?P<quiz_id>\d+)/",
                 self.admin_view(self.quizzes_view), name="quiz_detail"),
             url("quiz_post/", quiz_post, name="quiz_post"),
+        ]
 
+        event_urls = [
             url("events/create", self.admin_view(self.events_view), name="events"),
             url(r"events/detail/(?P<event_id>\d+)/",
                 self.admin_view(self.events_view), name="event_detail"),
             url("event_post/", event_post, name="event_post"),
         ]
-        urls += [
+
+        other_urls = [
             path('help/', self.admin_view(self.help_view)),
         ]
+        urls += (
+            event_urls
+            + quiz_urls
+            + question_urls
+            + other_urls
+        )
+
         return urls
 
     def help_view(self, request):
@@ -85,7 +99,45 @@ class MyAdminSite(AdminSite):
         if action == "list":
             pass
         if action == "edit":
-            pass
+            question = get_object_or_404(
+                models.QuestionBank.objects.filter(pk=question_id))
+            answer_inst = question.questionbankanswer_set.all()
+            answers = [None, None, None, None]
+            for i in range(len(answers)):
+                if answer_inst.count() > i:
+                    answers[i] = answer_inst[i]
+
+            def get_answer(index):
+                answer = None
+                if answers[index]:
+                    answer = answers[index].__dict__
+                    del answer["_state"]
+                    print(answer)
+                return answer
+            answers = [
+                get_answer(0),
+                get_answer(1),
+                get_answer(2),
+                get_answer(3)
+            ]
+            context = dict(
+                self.each_context(request),
+                app_path=None,
+                username=request.user.get_username(),
+                question=question,
+                question_form=QuestionForm(initial=question.__dict__),
+                answer_form_1=QuestionBankAnswerForm(
+                    prefix="a1", initial=answers[0]),
+                answer_form_2=QuestionBankAnswerForm(
+                    prefix="a2", initial=answers[1]),
+                answer_form_3=QuestionBankAnswerForm(
+                    prefix="a3", initial=answers[2]),
+                answer_form_4=QuestionBankAnswerForm(
+                    prefix="a4", initial=answers[3]),
+                answers=json.dumps(answers)
+
+            )
+            return TemplateResponse(request, "question/form.html", context)
 
     def quizzes_view(self, request, quiz_id=None):
         action = request.get_full_path().split('/')[3]
