@@ -25,7 +25,7 @@ if is_prod is False:
 
 CORS_ORIGIN_WHITELIST = (
     # "FRONT_END_DOMAIN_URL",  # TCT_TODO: Update this link
-    "http://localhost:8000",  # TCT_TODO: Remove this link this link
+    "http://localhost:8000",  # TCT_TODO: Remove this localhost link
 )
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -34,9 +34,10 @@ CORS_ORIGIN_WHITELIST = (
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = not is_prod
 
-ALLOWED_HOSTS = ["*"]
+# TCT_TODO: Remove this localhost link
+ALLOWED_HOSTS = ["localhost", "sustaingame-admin.herokuapp.com"]
 
 
 # Application definition
