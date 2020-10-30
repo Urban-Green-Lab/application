@@ -19,7 +19,7 @@ class QuestionBankAnswer(models.Model):
         QuestionBank, on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ["answer"]
+        ordering = ["?"]
         verbose_name_plural = "question bank answers"
 
     def __str__(self):
