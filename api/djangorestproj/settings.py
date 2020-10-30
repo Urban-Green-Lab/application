@@ -20,7 +20,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 is_prod = os.getenv('IS_HEROKU', False)
 
 # If not in production, pull in Environmental Variables locally
-if is_prod is None:
+if is_prod is False:
     import djangorestproj.hidden_keys
 
 CORS_ORIGIN_WHITELIST = (
