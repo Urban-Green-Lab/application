@@ -31,7 +31,7 @@ CORS_ORIGIN_WHITELIST = (
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # Pull in secert key from Environmental Variables
-SECRET_KEY = os.getenv('SECRET_KEY', "")
+SECRET_KEY = os.getenv('SECRET_KEY', "test")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not is_prod
