@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
+    <style>
+
+    .logo{
+        display:inline-block;
+    }
+
+    .sidePhotos{
+        background-color:#FBAB18;
+        display:flex;
+        
+    }
+
+    .row{
+        display: flex;
+    }
+
+    .column{
+    }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Urban Green Lab</title>
   </head>
   <body>
-    Hello {{full_name}},
 
-    <p>Thank you for Playing </p>
+<div style="background-color:#FBAB18;height:200px;width:50%;float: left;margin-right:10px;">
+   <div class="row">
+    <div class="column" style="padding-top:50px;padding-left:30px;padding-right:10px">
+        <img  class="logo" src="../../../browser/src/images/UglLogo.png">
+    </div>
+    <div class="column" style="padding-top:10px;padding-left:20px">
+        <img  class="logo" src = "../../../browser/src/images/sustaingame.png" width="80%">
+    </div>
+ </div>
+</div>
+
+<div style="height:200px;"></div>
+
+ <div style="width:50%">
+    <h1>Thank you for Playing</h1>
+
+     <p>To learn more about us, we encourage you to explore our website. There you'll discover our
+        diverse programs, resources for your home or workplace, our blog, coming events, and more.
+        Reach out to use by email at connect@urbangreenlab.org or message us on one of our social media channels.</p>
 
     <p><br>{{event_name}} : {{quiz_name}}</br></p>
 
@@ -31,10 +67,12 @@
         </c:forEach>
     </table>
 
-    <p>To learn more about us, we encourage you to explore our website. There you'll discover our
-        diverse programs, resources for your home or workplace, our blog, coming events, and more.
-        Reach out to use by email at connect@urbangreenlab.org or message us on one of our social media channels.
-        {{socialMediaLink}}</p>
+
+    <p> Urban Green Lab teaches communities to live more sustainably. Check out our list of 
+        recommendationis and resources that we believe will help guide you down the path to living
+        a more sustainable life. And don't forge to vidist us on soical media!</p>
+    <p> {{socialMediaLink}}</p>
+ </div>
   </body>
 
 </html>
