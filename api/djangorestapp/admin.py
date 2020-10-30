@@ -57,6 +57,10 @@ class MyAdminSite(AdminSite):
             url("events/list", self.admin_view(self.events_view), name="events_list"),
             url(r"events/detail/(?P<event_id>\d+)/",
                 self.admin_view(self.events_view), name="event_detail"),
+            url(r"events/delete/(?P<event_id>\d+)/",
+                self.admin_view(self.events_view), name="event_delete"),
+            url(r"events/edit/(?P<event_id>\d+)/",
+                self.admin_view(self.events_view), name="event_edit"),
             url("event_post/", event_post, name="event_post"),
         ]
 
@@ -234,6 +238,8 @@ class MyAdminSite(AdminSite):
             return redirect("admin:quizzes_list")
     def events_view(self, request, event_id=None):
         action = request.get_full_path().split('/')[3]
+        if event_id:
+            event = get_object_or_404(models.Event, pk=event_id)
         if action == "create":
             context = dict(
                 self.each_context(request),
@@ -267,6 +273,9 @@ class MyAdminSite(AdminSite):
             return TemplateResponse(request, "event/list.html", context)
         if action == "edit":
             pass
+        if action == "delete":
+            event.delete()
+            return redirect("admin:events_list")
 
 
 admin_site = MyAdminSite(name='myadmin')

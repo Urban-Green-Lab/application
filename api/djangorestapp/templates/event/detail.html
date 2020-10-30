@@ -14,5 +14,6 @@
   </li>
   {% endfor %}
 </ul>
-{% comment %} <a style="color: white" href="{% url "admin:question_edit" question_id=question.id%}"  class="btn btn-primary" role="button" >Edit</a> {% endcomment %}
+<a style="color: white" href="{% url "admin:event_edit" event_id=event.id%}"  class="btn btn-primary" role="button" >Edit</a>
+<a style="color: white" href="{% url "admin:event_delete" event_id=event.id%}"  class="btn btn-danger" role="button" >Delete</a>
  {% endblock %}
