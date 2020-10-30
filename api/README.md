@@ -9,8 +9,10 @@
       - Correct Answers
       - Info Link
 
+## [How to deploy API to Heroku](./heroku_ins.md)
 
-## FE Endpoints
+## FE Endpoints    
+
 ### [Postman Link](https://documenter.getpostman.com/view/10119276/TVYGdyQr)
 
 ### Active Event Quiz (READ)
