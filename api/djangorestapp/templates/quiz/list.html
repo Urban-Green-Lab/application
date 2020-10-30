@@ -1,5 +1,7 @@
 {% extends "base.html" %} {% block content %}{% with app_path as path %} 
 {% include "breadcrumbs.html" %} {% endwith %}
+<div class="container"> 
+
 <div class="display-4">Quizzes </div>
 <table>
   <thead>
@@ -27,7 +29,7 @@
     {% endfor %}
   </tbody>
 </table>
-
+</div>
 
 
 {% endblock %}

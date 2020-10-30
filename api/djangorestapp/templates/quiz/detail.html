@@ -3,6 +3,8 @@
 {% block content %}{% with app_path as path %}
 {% include "breadcrumbs.html" %}
 {% endwith %}
+<div class="container"> 
+
     <div class="display-4">Quiz: {{quiz.name}}</div>
     <h4>Timer: {{quiz.timer}} minutes</h4>
 
@@ -29,4 +31,5 @@
   </table>
 <a style="color: white" href="{% url "admin:quiz_edit" quiz_id=quiz.id%}"  class="btn btn-primary" role="button" >Edit</a>
 <a style="color: white" href="{% url "admin:quiz_delete" quiz_id=quiz.id%}"  class="btn btn-danger" role="button" >Delete</a>
+</div>
 {% endblock %}

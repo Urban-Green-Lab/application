@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block content %}{% with app_path as path %}
 {%include "breadcrumbs.html" %} {% endwith %}
+<div class="container"> 
 
 <form
   id="quiz-form"
@@ -7,8 +8,10 @@
   class="form"
   method="post"
 >
-  <h2>Question</h2>
-
+  <div class="display-4"
+    >{% if question.id%} Edit {% else %} Create {% endif %}Question</div
+  >
+  <hr />
   {% csrf_token %} {{ question_form.as_p }}
   <hr />
   <div id="answer-forms" class="answers">
@@ -22,9 +25,11 @@
 
   <input type="hidden" name="question_id" value="{{question.id}}" />
   <input type="hidden" name="answers" value="{{answers}}" />
- 
-  <input type="submit" id="submit-button" value="OK" />  <span id="answer-error"> </span>
+
+  <input type="submit" id="submit-button" value="OK" />
+  <span id="answer-error"> </span>
 </form>
+  </div>
 
 <script>
   const inputs = $('input:checkbox');

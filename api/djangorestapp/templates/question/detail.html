@@ -3,6 +3,8 @@
 {% block content %}{% with app_path as path %}
 {% include "breadcrumbs.html" %}
 {% endwith %}
+<div class="container"> 
+
     <div class="display-4">Question: {{question.question}}</div>
 <table>  
     <thead>
@@ -35,5 +37,5 @@
 
     <a style="color: white" href="{% url "admin:question_edit" question_id=question.id%}"  class="btn btn-primary" role="button" >Edit</a>
     <a style="color: white" href="{% url "admin:question_delete" question_id=question.id%}"  class="btn btn-danger" role="button" >Delete</a>
-
+</div>
 {% endblock %}

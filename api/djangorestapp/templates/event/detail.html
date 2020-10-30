@@ -4,6 +4,9 @@
 {% with app_path as path %}
 {% include "breadcrumbs.html" %}
 {% endwith %}
+<div class="container">
+
+
 <div class="display-4">Event: </div>
 <table>  
     <thead>
@@ -79,4 +82,5 @@
 
 <a style="color: white" href="{% url "admin:event_edit" event_id=event.id%}"  class="btn btn-primary" role="button" >Edit</a>
 <a style="color: white" href="{% url "admin:event_delete" event_id=event.id%}"  class="btn btn-danger" role="button" >Delete</a>
+</div>
  {% endblock %}
