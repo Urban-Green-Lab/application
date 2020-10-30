@@ -8,12 +8,9 @@ class QuestionBank(models.Model):
 
     Fields
     - question = `CharField(max_length=255)`
-    - value = `IntegerField`
     - info_link = `URLField(max_length=200, blank=True, null=True)`
     """
     question = models.CharField(max_length=255)
-    value = models.IntegerField(
-        default=1, help_text="How many points this question is worth")
     info_link = models.URLField(max_length=200, blank=True, null=True)
 
     class Meta:
