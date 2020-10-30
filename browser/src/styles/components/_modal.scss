@@ -46,6 +46,10 @@
   -moz-box-shadow: 0px 0px 44px 0px rgba(0, 0, 0, 0.1);
 }
 
+.modal-container {
+  z-index: 1;
+}
+
 @media only screen and (min-width: 575px) {
   .modal-dialog {
     margin: 60px auto;

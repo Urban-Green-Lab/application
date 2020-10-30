@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import UglLogo from '../images/UglLogo.png';
+import floatingBoxes from '../images/floatingBoxes.png';
 
 export default class Countdown extends Component {
   state = {
@@ -39,6 +40,8 @@ export default class Countdown extends Component {
   render() {
     return (
       <div className='countdown'>
+        <img src={floatingBoxes} alt="" className="bg-img"/>
+
         <div className="countdown-container">
           <h1>Get ready!</h1>
           {this.renderonDOM()}

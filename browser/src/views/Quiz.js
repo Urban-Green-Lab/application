@@ -3,6 +3,10 @@ import { Alert } from 'reactstrap';
 import getActiveEvent from '../data/getActiveEvent';
 import Question from '../components/Question';
 import Answers from '../components/Answers';
+import floatingBoxes from '../images/floatingBoxes.png';
+import UglLogo from '../images/UglLogo.png';
+import sadface from '../images/sadface.png';
+import happyface from '../images/happyface.png';
 
 export default class Quiz extends Component {
   state = {
@@ -15,8 +19,12 @@ export default class Quiz extends Component {
 
   componentDidMount() {
     getActiveEvent().then((resp) => {
+      localStorage.setItem('event_id', resp.event_id);
+      localStorage.setItem('quiz_bank', resp.quiz_id);
       this.setState({
-        questions: resp[0].questions,
+        questions: resp.questions,
+        quiz_bank: resp.quiz_id,
+        event_id: resp.event_id,
       }, this.handleStart);
     });
   }
@@ -66,12 +74,12 @@ export default class Quiz extends Component {
       if (this.state.questions.length >= Number(id) + 1) {
         document.querySelector('.c').classList.remove('correct');
         document.querySelector(`#button-${i}`).classList.remove('wrong');
-        const bonusPoints = this.state.count * 100;
-        const score = qpoints ? bonusPoints + this.state.questions[id].value : 0;
+        const bonusPoints = this.state.count * 10;
+        const score = qpoints ? bonusPoints + 0 : 0;
         this.setState({
           score: this.state.score + score,
           is_correct: qpoints,
-          current_value: this.state.questions[id].value,
+          current_value: 0,
           current_bp: bonusPoints,
           count: this.state.timer,
         });
@@ -89,6 +97,7 @@ export default class Quiz extends Component {
             if (this.state.questions.length > Number(id) + 1) {
               document.querySelector('.c').classList.remove('correct');
               document.querySelector(`#button-${i}`).classList.remove('wrong');
+              document.querySelector(`#button-${i}`).blur();
               this.props.history.push(`./${Number(id) + 1}`);
             } else {
               localStorage.setItem('score', JSON.stringify(this.state.score));
@@ -110,6 +119,7 @@ export default class Quiz extends Component {
             if (this.state.questions.length > Number(id) + 1) {
               document.querySelector('.c').classList.remove('correct');
               document.querySelector(`#button-${i}`).classList.remove('wrong');
+              document.querySelector(`#button-${i}`).blur();
               this.props.history.push(`./${Number(id) + 1}`);
             } else {
               localStorage.setItem('score', JSON.stringify(this.state.score));
@@ -130,13 +140,23 @@ export default class Quiz extends Component {
       view = <h1 className='crazyTimer'>{this.format(this.state.count)}</h1>;
     } else if (this.state.is_correct) {
       view = <Alert className='score-info'>
-      <div className='correct-emoji'>EMOJI</div>
-      <div>CORRECT {this.state.current_value}pts! <br /> BONUS +{this.state.current_bp} for fast answer</div>
+      <div className='correct-emoji'>
+        <img src={happyface} alt="happy face emoji"/>
+      </div>
+      <div className="result">
+        <p className="correct-result">CORRECT {this.state.current_value}pts! </p>
+        <p className="correct-bonus">BONUS +{this.state.current_bp} for fast answer</p>
+      </div>
     </Alert>;
     } else {
       view = <Alert className='score-info'>
-      <div className='correct-emoji'>EMOJI</div>
-      <div>Wrong Answer <br /> 0pts</div>
+      <div className='correct-emoji'>
+        <img src={sadface} alt="sad face emoji"/>
+      </div>
+      <div className="result">
+        <p className="wrong-result">Wrong Answer</p>
+        <p className="wrong-points">0pts</p>
+      </div>
     </Alert>;
     }
     return view;
@@ -157,8 +177,8 @@ export default class Quiz extends Component {
   renderonDOM = () => {
     const some = <>
           {this.state.questions.length > 0 ? this.renderQuestion() : 'Loading'}
-          <div className='container'>{this.renderMiddleSection()}</div>
-          {this.state.questions.length > 0 && <div className='answer-column'>{this.renderAnswerButtons()}
+          {this.state.questions.length > 0 ? <div className='container'>{this.renderMiddleSection()}</div> : 'Loading' }
+          {this.state.questions.length > 0 && <div className={`answer-column ${this.state.is_correct !== '' ? 'not-active' : ''}`}>{this.renderAnswerButtons()}
           </div>}
         </>;
     return some;
@@ -171,13 +191,22 @@ export default class Quiz extends Component {
 
   render() {
     return (
-      <div>
-        <div className="quiz-header">
-        <div>{Number(this.props.match.params.id) + 1} / {this.state.questions.length}</div>
-        <div>{this.state.score}pts</div>
+      <div className="quiz-container">
+        <img src={floatingBoxes} alt="" className="bg-img"/>
+
+        <div className="quiz">
+          <div className="quiz-header">
+            <div className="question-count">
+              {Number(this.props.match.params.id) + 1} / {this.state.questions.length}
+            </div>
+            <div className="score">{this.state.score}pts</div>
+          </div>
+          <div className='quiz-body'>{this.renderonDOM()}</div>
+          <div className='container'>{(this.state.count === 0 && this.state.questions.length) && this.runIt(this.props.match.params.id, false, 'time')}</div>
         </div>
-        <div className='container'>{this.renderonDOM()}</div>
-        <div className='container'>{(this.state.count === 0 && this.state.questions.length) && this.runIt(this.props.match.params.id, false, 'time')}</div>
+
+        <p>brought to you by</p>
+        <img src={UglLogo} alt="urban green lab" className="ugl-logo"/>
       </div>
     );
   }

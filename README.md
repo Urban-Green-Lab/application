@@ -147,10 +147,6 @@ We are deploying the FE and BE separately to decouple the deployments and update
 - <a href="https://github.com/meg723" target="_blank">**Meg Underwood (Project Manager)**</a>
 - <a href="https://github.com/drteresavasquez" target="_blank">**Dr. Teresa Vasquez (Tech Lead)**</a>
 
-### UX/UI
-- <a href="https://github.com/bdoves" target="_blank">**Bodhi Stewart**</a>
-
-
 ### Designers
 - <a href="https://github.com/ryan-firm" target="_blank">**Ryan Firm**</a>
 - <a href="#" target="_blank">**Nick	Miller**</a>
@@ -158,8 +154,7 @@ We are deploying the FE and BE separately to decouple the deployments and update
 ### Front End Engineers
 - <a href="https://github.com/drteresavasquez" target="_blank">**Dr. Teresa Vasquez**</a>
 - <a href="https://github.com/prafullatass" target="_blank">**Prafullata	Sonawane**</a>
-- <a href="https://github.com/jeremybdavis" target="_blank">**Jeremy	Davis**</a>
-- <a href="https://github.com/vieraruben" target="_blank">**Ruben Viera**</a>
+- <a href="https://github.com/jeremybdavis" target="_blank">**Jeremy Davis**</a>
 
 ### Back End Engineers
 - <a href="https://github.com/TrinityTerry" target="_blank">**Trinity Christiana**</a>
@@ -167,5 +162,5 @@ We are deploying the FE and BE separately to decouple the deployments and update
 - <a href="https://github.com/hannahhall" target="_blank">**Hannah Hall**</a>
 
 ### QA
-- <a href="https://github.com/ankajgoel" target="_blank">**Ankaj	Goel**</a>
-- <a href="#" target="_blank">**Summer	Perkey**</a>
+- <a href="https://github.com/ankajgoel" target="_blank">**Ankaj Goel**</a>
+- <a href="#" target="_blank">**Summer Perkey**</a>

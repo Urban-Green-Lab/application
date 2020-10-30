@@ -3,13 +3,14 @@ import {
   Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
 import UglLogo from '../images/UglLogo.png';
+import floatingBoxes from '../images/floatingBoxes.png';
 
 export default class Home extends Component {
   state = {
     fname: '',
     lname: '',
     email: '',
-    zip: '',
+    zip_code: '',
   }
 
   handleChange = (e) => {
@@ -27,6 +28,8 @@ export default class Home extends Component {
   render() {
     return (
       <div className="home">
+        <img src={floatingBoxes} alt="" className="bg-img"/>
+
         <div className="home-form">
           <h1>Before we begin</h1>
           <Form onSubmit={this.handleSubmit} >
@@ -43,8 +46,8 @@ export default class Home extends Component {
               <Input onChange={this.handleChange} type="email" name="email" id="email" required/>
             </FormGroup>
             <FormGroup>
-              <Label for="lname">Zip Code <span className="form-required">*</span></Label>
-              <Input onChange={this.handleChange} type="text" pattern="[0-9]*" name="zip" id="zip" maxLength="5" required/>
+              <Label for="zip_code">Zip Code <span className="form-required">*</span></Label>
+              <Input onChange={this.handleChange} type="text" pattern="[0-9]*" name="zip_code" id="zip_code" maxLength="5" required/>
             </FormGroup>
             <Button className='btn btn-dark'>Get Ready</Button>
           </Form>
