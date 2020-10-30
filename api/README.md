@@ -34,7 +34,6 @@
   "questions": [
     {
       "question": "varchar",
-      "image": "url",
       "question_id": "int",
       "value": "int",
       "answers": [
@@ -56,9 +55,10 @@
   "fname": "varchar/null",
   "lname": "varchar/null",
   "initials": "varchar(3)",
-  "event_id": "int",
-  "quiz_bank_id": "int",
+  "event": "int",
+  "quiz_bank": "int",
   "score": "int",
+  "zip_code": "varchar(5)"
 }
 ```
 
@@ -77,4 +77,3 @@
 
 - Make sure only one event is active (Create & Update)
   - Add a note in admin on create and update
-- Image upload in Django

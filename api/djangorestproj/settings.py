@@ -37,7 +37,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', "test")
 DEBUG = not is_prod
 
 # TCT_TODO: Remove this localhost link
-ALLOWED_HOSTS = ["localhost", "sustaingame-admin.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "sustaingame-admin.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
