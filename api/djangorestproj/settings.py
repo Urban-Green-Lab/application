@@ -23,10 +23,10 @@ is_prod = os.getenv('IS_HEROKU', False)
 if is_prod is False:
     import djangorestproj.hidden_keys
 
-CORS_ORIGIN_WHITELIST = (
-    # "FRONT_END_DOMAIN_URL",  # TCT_TODO: Update this link
-    "http://localhost:8000",  # TCT_TODO: Remove this localhost link
-)
+# CORS_ORIGIN_WHITELIST = (
+#     # "FRONT_END_DOMAIN_URL",  # TCT_TODO: Update this link
+#     "*",  # TCT_TODO: Remove this localhost link
+# )
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
@@ -37,7 +37,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', "test")
 DEBUG = not is_prod
 
 # TCT_TODO: Remove this localhost link
-ALLOWED_HOSTS = ["localhost", "sustaingame-admin.herokuapp.com"]
+ALLOWED_HOSTS = ["*", "sustaingame-admin.herokuapp.com", ]
 
 
 # Application definition
