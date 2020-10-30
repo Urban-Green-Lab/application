@@ -1,12 +1,6 @@
-# Back-end
+# Back-End
 
 ## Todo
-- Create Django Rest Proj/App
-- Postgres DB
-- Models
-- FE Endpoints
-- Deploy with Heroku
-- CRUD Endpoints
 - Create fixtures from given quizzes
 - Send emails after post to Quiz Taker
   - [Create default email template](./email.txt)
@@ -14,15 +8,10 @@
     - Questions
       - Correct Answers
       - Info Link
-- Admin side
-- Download CSV file (by Event)
-  - Email
-  - First Name
-  - Last Name
-  - Event Name
-  - Event Date
+
 
 ## FE Endpoints
+### [Postman Link](https://documenter.getpostman.com/view/10119276/TVYGdyQr)
 
 ### Active Event Quiz (READ)
 ```json
@@ -71,8 +60,3 @@
   }
 ]
 ```
-
-## Admin
-
-- Make sure only one event is active (Create & Update)
-  - Add a note in admin on create and update
