@@ -28,13 +28,13 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:8000",  # TCT_TODO: Remove this localhost link
     "http://localhost:3000",  # TCT_TODO: Remove this localhost link
     "https://uglapp.netlify.app",
-    "https://deploy-preview-85--uglapp.netlify.app"
+    "https://deploy-preview-88--uglapp.netlify.app" # TCT_TODO: Remove this localhost link
 )
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # Pull in secert key from Environmental Variables
-SECRET_KEY = os.getenv('SECRET_KEY', "test")
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not is_prod
