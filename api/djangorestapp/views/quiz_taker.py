@@ -1,17 +1,14 @@
 from rest_framework import serializers, status
 from djangorestapp.models import (
-    QuizTaker, Event, QuestionBank, QuizQuestion, QuizBank)
+    QuizTaker, Event, QuizQuestion, QuizBank)
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.core.mail import send_mail
-from django.conf import settings
 from django.template.loader import get_template
-from django.template import Context
-import string
-from django.template.response import TemplateResponse
-from django.contrib.staticfiles import finders
-from django.core.mail import EmailMultiAlternatives
+from threading import Thread
+from djangorestproj import settings
 
+EMAIL_HEADER_URL = "https://firebasestorage.googleapis.com/v0/b/urban-green-lab-quiz.appspot.com/o/Screen%20Shot%202020-10-30%20at%209.42.37%20PM.png?alt=media&token=4ab97143-d858-4ddf-a29e-bc65b4b4447d"
 
 
 @api_view(('POST',))
@@ -26,76 +23,33 @@ def post_quiz_taker(request):
                 status=status.HTTP_400_BAD_REQUEST
             )
         serialized_data.save()
-        # Send email here
-        # Check to see if email isn't null
 
         if data.get('email', None):
-            quiz_bank_id = data.get('quiz_bank')
-            email = data.get('email')
-            full_name = data.get('fname') + " " + data.get('lname')
-            score = data.get('score')
-            event_name = Event.objects.get(id=data.get('event')).name
-            quiz_name = QuizBank.objects.get(id=quiz_bank_id).name
+            Thread(target=send_email, args=(data, )).start()
 
-            question_answers = getQuestionAnswers(quiz_bank_id)
-
-
-
-            plaintext = get_template("mail.html")
-            htmly     = get_template("mail.html")
-
-            context = {
-                        'full_name': full_name,
-                        'event_name': event_name,
-                        'quiz_name': quiz_name,
-                        'score': score,
-                        'question_answers': question_answers
-            }
-
-            subject, from_email, to = (
-                'Thank you for registering to our site', 
-                'urbangreenlabapp@example.com', 
-                email
-            )
-
-            text_content = plaintext.render(context)
-            html_content = htmly.render(context)
-            msg = EmailMultiAlternatives(subject, "html_content", from_email, [to])
-            msg.attach_alternative(html_content, "text/html")
-            msg.send()
-
-
-        return TemplateResponse(request, "mail.html", {
-            'full_name': full_name,
-            'event_name': event_name,
-            'quiz_name': quiz_name,
-            'score': score,
-            'question_answers': question_answers
-        })
-        # return Response(serialized_data.data)
+        return Response(serialized_data.data)
     except Exception as error:
         return Response(
             {"detail": "{e}".format(e=error)}, status=status.HTTP_404_NOT_FOUND
         )
 
 
-# Construct QuestionAnswer Array for a given quiz id
 def getQuestionAnswers(quiz_bank_id):
-    # get an array of the questions
-    ## quiz_question = quiz_bank_id, question_bank_id
-    # create an array to hold the question answers
     question_answers = []
     quiz_questions = QuizQuestion.objects.filter(quiz_bank_id=quiz_bank_id)
 
-    for current_quiz_question in quiz_questions:
-        answer = current_quiz_question.question_bank.questionbankanswer_set.filter(
-            is_correct=True)
+    for question in quiz_questions:
+        answer = question.question_bank.questionbankanswer_set.get(
+            is_correct=True
+        )
         currentQuestionAnswer = QuestionAnswer(
-            current_quiz_question.question_bank.question, answer, current_quiz_question.question_bank.info_link)
+            question.question_bank.question,
+            answer,
+            question.question_bank.info_link
+        )
         question_answers.append(currentQuestionAnswer)
 
     return question_answers
-# QuestionAnswer Model
 
 
 class QuestionAnswer():
@@ -110,3 +64,39 @@ class QuizTakerSerializer(serializers.ModelSerializer):
         model = QuizTaker
         fields = ["email", "fname", "lname", "event",
                   "quiz_bank", "score", "initials", "zip_code"]
+
+
+def send_email(data):
+    quiz_bank_id = data.get('quiz_bank')
+    email = data.get('email')
+    full_name = data.get('fname') + " " + data.get('lname')
+    score = data.get('score')
+    event_name = Event.objects.get(id=data.get('event')).name
+    quiz_name = QuizBank.objects.get(id=quiz_bank_id).name
+
+    question_answers = getQuestionAnswers(quiz_bank_id)
+
+    plaintext = get_template("mail.txt")
+    htmly = get_template("mail.html")
+
+    context = {
+        'full_name': full_name,
+        'event_name': event_name,
+        'quiz_name': quiz_name,
+        'score': score,
+        'question_answers': question_answers,
+    }
+
+    subject, from_email, to = (
+        settings.SUBJECT_TEXT,
+        settings.DEFAULT_FROM_EMAIL,
+        email
+    )
+
+    text_content = plaintext.render(context)
+    html_content = htmly.render(context)
+
+    send_mail(subject, text_content, from_email, [
+        to], fail_silently=True,
+        html_message=html_content
+    )

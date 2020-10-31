@@ -59,7 +59,11 @@ class MyAdminSite(AdminSite):
         event_urls = [
             url("events/create", self.admin_view(self.events_view),
                 name="events_list"),
-            url("events/list", self.admin_view(self.events_view), name="events_list"),
+            url(
+                "events/list",
+                self.admin_view(self.events_view),
+                name="events_list"
+            ),
             url(r"events/detail/(?P<event_id>\d+)/",
                 self.admin_view(self.events_view), name="event_detail"),
             url(r"events/delete/(?P<event_id>\d+)/",
@@ -71,7 +75,6 @@ class MyAdminSite(AdminSite):
 
         other_urls = [
             path('help/', self.admin_view(self.help_view)),
-            path('mail/', self.admin_view(self.mail_view)),
         ]
         urls += (
             event_urls
@@ -81,16 +84,6 @@ class MyAdminSite(AdminSite):
         )
 
         return urls
-
-    def mail_view(self, request):
-        context = {
-            'full_name': "Trinity Terry",
-            'event_name': "E",
-            'quiz_name': "quiz_name",
-            'score': "score",
-            'question_answers': []
-        }
-        return TemplateResponse(request, "mail.html", context)
 
     def help_view(self, request):
         context = dict(
@@ -198,8 +191,12 @@ class MyAdminSite(AdminSite):
             )
             return TemplateResponse(request, "quiz/form.html", context)
         if action == "detail":
-            questions = [quizquestion.question_bank for quizquestion in models.QuizQuestion.objects.filter(
-                quiz_bank=quiz)]
+            questions = [
+                quizquestion.question_bank
+                for quizquestion in models.QuizQuestion.objects.filter(
+                    quiz_bank=quiz
+                )
+            ]
 
             context = dict(
                 self.each_context(request),
@@ -231,8 +228,14 @@ class MyAdminSite(AdminSite):
                     question = orig_questions[index].question_bank_id
                 return question
 
-            questions = [QuizQuestionForm(
-                prefix=f"qq{num + 1}", initial={"question_bank": get_question(num)}) for num in range(len(orig_questions))]
+            questions = [
+                QuizQuestionForm(
+                    prefix=f"qq{num + 1}", initial={
+                        "question_bank": get_question(num)
+                    }
+                )
+                for num in range(len(orig_questions))
+            ]
 
             quiz_question_ids = orig_questions
             for i in range(len(quiz_question_ids)):
@@ -269,8 +272,12 @@ class MyAdminSite(AdminSite):
             return TemplateResponse(request, "event/form.html", context)
         if action == "detail":
             event = get_object_or_404(models.Event, pk=event_id)
-            quizzes = [event_quiz.quiz for event_quiz in models.EventQuiz.objects.filter(
-                event=event)]
+            quizzes = [
+                event_quiz.quiz
+                for event_quiz in models.EventQuiz.objects.filter(
+                    event=event
+                )
+            ]
             context = dict(
                 self.each_context(request),
                 app_path=request.get_full_path().split("/"),
@@ -300,7 +307,12 @@ class MyAdminSite(AdminSite):
                 event_quiz=(event_quizzes[0] if has_quizzes else None),
                 event_quiz_form=EventQuizForm(
                     initial=(
-                        {"quiz": event_quizzes[0].quiz.id if has_quizzes else {}})
+                        {
+                            "quiz": event_quizzes[0].quiz.id
+                            if has_quizzes
+                            else {}
+                        }
+                    )
                 ),
                 date=datetime.date.strftime(event.date, "%m/%d/%Y")
             )
@@ -343,21 +355,22 @@ class QuizTakerAdmin(ModelAdmin):
 
         writer.writerow(field_names)
         for obj in queryset:
-            row = writer.writerow([getattr(obj, field)
-                                   for field in field_names])
+            writer.writerow([getattr(obj, field)
+                             for field in field_names])
 
         return response
 
     export_as_csv.short_description = "Export Selected As CSV"
 
 
-admin_site = MyAdminSite(name='myadmin')
-# Register your models here.
+class QuestionAnswer():
+    def __init__(self, question, answer, info_link):
+        self.question = question
+        self.answer = answer
+        self.info_link = info_link
 
-# admin_site.register(models.EventQuiz)
-# admin_site.register(models.Event)
-# admin_site.register(models.QuestionBankAnswer)
-# admin_site.register(models.QuestionBank)
-# admin_site.register(models.QuizBank)
-# admin_site.register(models.QuizQuestion)
+
+admin_site = MyAdminSite(name='myadmin')
+
+# Register your models here.
 admin_site.register(models.QuizTaker, QuizTakerAdmin)
