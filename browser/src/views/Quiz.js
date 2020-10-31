@@ -4,7 +4,7 @@ import getActiveEvent from '../data/getActiveEvent';
 import Question from '../components/Question';
 import Answers from '../components/Answers';
 import floatingBoxes from '../images/floatingBoxes.png';
-import UglLogo from '../images/UglLogo.png';
+import Footer from '../components/Footer';
 import sadface from '../images/sadface.png';
 import happyface from '../images/happyface.png';
 
@@ -204,9 +204,7 @@ export default class Quiz extends Component {
           <div className='quiz-body'>{this.renderonDOM()}</div>
           <div className='container'>{(this.state.count === 0 && this.state.questions.length) && this.runIt(this.props.match.params.id, false, 'time')}</div>
         </div>
-
-        <p>brought to you by</p>
-        <img src={UglLogo} alt="urban green lab" className="ugl-logo"/>
+        <Footer />
       </div>
     );
   }
