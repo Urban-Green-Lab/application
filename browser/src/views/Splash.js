@@ -12,7 +12,7 @@ export default class Splash extends Component {
   state = {
     activeEvent: true,
     childMode: true,
-    loading: true,
+    loading: false,
   }
 
   componentDidMount() {
