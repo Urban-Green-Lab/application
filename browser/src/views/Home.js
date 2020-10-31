@@ -32,7 +32,7 @@ export default class Home extends Component {
         <img src={floatingBoxes} alt="" className="bg-img"/>
 
         <div className="btn-container">
-          <Link className="closeBtn" to={'/'}><i class="fas fa-chevron-left"></i>&nbsp; Go Back</Link>
+          <Link className="closeBtn" to={'/'}><i className="fas fa-chevron-left"></i>&nbsp; Go Back</Link>
         </div>
         <div className="home-form">
           <h1>Before we begin</h1>

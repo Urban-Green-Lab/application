@@ -11,23 +11,22 @@ import Footer from '../components/Footer';
 export default class Splash extends Component {
   state = {
     activeEvent: true,
-    childMode: true,
-    loading: false,
+    childMode: false,
+    loading: true,
   }
 
   componentDidMount() {
     localStorage.setItem('user', JSON.stringify({}));
     getActiveEvent().then((resp) => {
-      console.warn(resp);
       if (resp === 'NOPE') {
         this.setState({
           activeEvent: false,
         });
       } else {
-        // this.setState({
-      //   childMode: resp.child_mode,
-      //   loading: false,
-      // });
+        this.setState({
+          childMode: resp.child_mode,
+          loading: false,
+        });
       }
     });
   }
