@@ -21,6 +21,7 @@ export default class Quiz extends Component {
     getActiveEvent().then((resp) => {
       localStorage.setItem('event_id', resp.event_id);
       localStorage.setItem('quiz_bank', resp.quiz_id);
+      localStorage.setItem('questions', resp.questions.length);
       this.setState({
         questions: resp.questions,
         quiz_bank: resp.quiz_id,
@@ -176,8 +177,8 @@ export default class Quiz extends Component {
 
   renderonDOM = () => {
     const some = <>
-          {this.state.questions.length > 0 ? this.renderQuestion() : 'Loading'}
-          {this.state.questions.length > 0 ? <div className='container'>{this.renderMiddleSection()}</div> : 'Loading' }
+          {this.state.questions.length > 0 ? this.renderQuestion() : 'Question Loading...'}
+          {this.state.questions.length > 0 ? <div className='container'>{this.renderMiddleSection()}</div> : '' }
           {this.state.questions.length > 0 && <div className={`answer-column ${this.state.is_correct !== '' ? 'not-active' : ''}`}>{this.renderAnswerButtons()}
           </div>}
         </>;
