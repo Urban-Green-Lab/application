@@ -27,7 +27,7 @@ const NoActiveEvents = (props) => {
           <h1>No Active Events</h1>
           <p className="container">Currently there are not any active events happening. Check out "How to Play" to be prepared for when the next challenge is available</p>
 
-          <p>In the meantime, checkout our <a href="https://urbangreenlab.org/">website</a> for more details about what we do and who we are.</p>
+          <p className="container">In the meantime, checkout our <a href="https://urbangreenlab.org/">website</a> for more details about what we do and who we are.</p>
         </ModalBody>
       </Modal>
     </div>
