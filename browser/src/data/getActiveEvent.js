@@ -7,10 +7,14 @@ import axios from 'axios';
 //     .catch((error) => reject(error));
 // });
 
-const getActiveEvent = () => new Promise((resolve, reject) => {
+const getActiveEvent = () => new Promise((resolve) => {
   axios.get('https://sustaingame-admin.herokuapp.com/active_event_info/')
     .then((response) => resolve(response.data))
-    .catch((error) => reject(error));
+    .catch((error) => {
+      if (error.response.status === 404) {
+        resolve('NOPE');
+      }
+    });
 });
 
 export default getActiveEvent;
