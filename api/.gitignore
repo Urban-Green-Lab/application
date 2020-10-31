@@ -120,3 +120,4 @@ GitHub.sublime-settings
 # ignore file pattern
 ___*
 hidden_keys.py
+djangorestproj/staticfiles
