@@ -25,14 +25,16 @@
     <title>Urban Green Lab</title>
   </head>
   <body>
+{% load static %}
+
 
 <div style="background-color:#FBAB18;height:200px;width:50%;float: left;margin-right:10px;">
    <div class="row">
     <div class="column" style="padding-top:50px;padding-left:30px;padding-right:10px">
-        <img  class="logo" src="../../../browser/src/images/UglLogo.png">
+        <img  class="logo" src="{% static "UglLogo.png" %}">
     </div>
     <div class="column" style="padding-top:10px;padding-left:20px">
-        <img  class="logo" src = "../../../browser/src/images/sustaingame.png" width="80%">
+        <img  class="logo" src = "{% static "sustaingame.png" %}" width="80%">
     </div>
  </div>
 </div>
@@ -42,9 +44,7 @@
  <div style="width:50%">
     <h1>Thank you for Playing</h1>
 
-     <p>To learn more about us, we encourage you to explore our website. There you'll discover our
-        diverse programs, resources for your home or workplace, our blog, coming events, and more.
-        Reach out to use by email at connect@urbangreenlab.org or message us on one of our social media channels.</p>
+     <p>To learn more about Urban Green Lab [move link to the word "website], we encourage you to explore our website. There you'll discover our diverse programs, resources for your home or workplace, our blog, coming events and more. [relocate this sentence below]</p>
 
     <p><br>{{event_name}} : {{quiz_name}}</br></p>
 

@@ -71,6 +71,7 @@ class MyAdminSite(AdminSite):
 
         other_urls = [
             path('help/', self.admin_view(self.help_view)),
+            path('mail/', self.admin_view(self.mail_view)),
         ]
         urls += (
             event_urls
@@ -80,6 +81,16 @@ class MyAdminSite(AdminSite):
         )
 
         return urls
+
+    def mail_view(self, request):
+        context = {
+            'full_name': "Trinity Terry",
+            'event_name': "E",
+            'quiz_name': "quiz_name",
+            'score': "score",
+            'question_answers': []
+        }
+        return TemplateResponse(request, "mail.html", context)
 
     def help_view(self, request):
         context = dict(
@@ -298,7 +309,7 @@ class MyAdminSite(AdminSite):
             event.delete()
             return redirect("admin:events_list")
 
-    
+
 class QuizTakerAdmin(ModelAdmin):
     """
     Display first, last name, email, event name, and event date
@@ -310,29 +321,30 @@ class QuizTakerAdmin(ModelAdmin):
     list_filter = ('event',)
     ordering = ['email', 'fname']
     actions = ['export_as_csv']
-    
 
     def date(self, quiz_taker):
         return quiz_taker.event.date
 
     def has_add_permission(self, request, obj=None):
         return False
-    
+
     def has_change_permission(self, request, obj=None):
         return False
-    
+
     def export_as_csv(self, request, queryset):
 
         meta = self.model._meta
         field_names = [field.name for field in meta.fields]
 
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
+        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(
+            meta)
         writer = csv.writer(response)
 
         writer.writerow(field_names)
         for obj in queryset:
-            row = writer.writerow([getattr(obj, field) for field in field_names])
+            row = writer.writerow([getattr(obj, field)
+                                   for field in field_names])
 
         return response
 
