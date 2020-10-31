@@ -11,7 +11,7 @@ const getActiveEvent = () => new Promise((resolve) => {
   axios.get('https://sustaingame-admin.herokuapp.com/active_event_info/')
     .then((response) => resolve(response.data))
     .catch((error) => {
-      if (error.response) {
+      if (error) {
         resolve('NOPE');
       }
     });
