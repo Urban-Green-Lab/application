@@ -25,6 +25,8 @@ class QuizTaker(models.Model):
     score = models.IntegerField()
     initials = models.CharField(max_length=3)
     zip_code = models.CharField(max_length=5, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
 
     class Meta:
         ordering = ["lname"]
