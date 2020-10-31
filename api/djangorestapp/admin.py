@@ -132,12 +132,13 @@ class MyAdminSite(AdminSite):
             )
             return TemplateResponse(request, "question/list.html", context)
         if action == "edit":
-            answer_inst = question.questionbankanswer_set.all()
+            answer_inst = question.questionbankanswer_set.all().order_by("answer")
             answers = [None, None, None, None]
             for i in range(len(answers)):
-                if answer_inst.count() > i:
+                if 4 > i:
                     answers[i] = answer_inst[i]
 
+            # print(answers)
             def get_answer(index):
                 answer = None
                 if answers[index]:
@@ -150,6 +151,7 @@ class MyAdminSite(AdminSite):
                 get_answer(2),
                 get_answer(3)
             ]
+            # print(answers)
             context = dict(
                 self.each_context(request),
                 app_path=request.get_full_path().split("/"),
