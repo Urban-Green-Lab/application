@@ -66,6 +66,7 @@
   };
   checkChecks();
   inputs.change(checkChecks);
-  textInputs.keypress(checkChecks);
+  textInputs.keyup(checkChecks);
+  textInputs.click(checkChecks);
 </script>
 {% endblock %}
