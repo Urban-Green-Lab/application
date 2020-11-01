@@ -24,6 +24,7 @@
     padding: 40px 30px 40px;
     width: 100%;
     max-width: 450px;
+    z-index: 5;
 
     input-label {
         margin: 1rem 0;
@@ -60,7 +61,7 @@
     .closeBtn {
         color: $font-main;
         background-color: transparent;
-        width:50px;
+        width:100px;
         padding: 0%;
         border: none;
     }
