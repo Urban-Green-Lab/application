@@ -11,7 +11,6 @@ def quiz_post(request):
             quiz = get_object_or_404(QuizBank, pk=int(quiz_id))
 
             quiz.name = data.get("name")
-            quiz.timer = int(data.get("timer"))
             quiz.save()
             quiz_question_ids = json.loads(data.get("quiz_question_ids"))
 
@@ -43,7 +42,6 @@ def quiz_post(request):
         else:
             quiz_bank = QuizBank.objects.create(
                 name=data.get("name"),
-                timer=int(data.get("timer"))
             )
 
             for key, value in data.items():

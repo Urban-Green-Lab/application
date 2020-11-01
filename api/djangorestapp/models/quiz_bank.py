@@ -9,10 +9,8 @@ class QuizBank(models.Model):
 
     Fields
     - name = `CharField(max_length=255)`
-    - timer = `IntegerField` in minutes
     """
     name = models.CharField(max_length=255)
-    timer = models.IntegerField()
 
     class Meta:
         ordering = ["name"]

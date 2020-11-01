@@ -21,7 +21,6 @@
   "event_id": "int",
   "quiz_id": "int",
   "child_mode": "bool",
-  "timer": "int (min)", 
   "questions": [
     {
       "question": "varchar",

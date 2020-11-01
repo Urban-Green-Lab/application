@@ -21,7 +21,7 @@ class QuestionBankAnswerForm(forms.ModelForm):
 class QuizBankForm(forms.ModelForm):
     class Meta:
         model = QuizBank
-        fields = ["name", "timer", ]
+        fields = ["name", ]
 
 
 class QuizQuestionForm(forms.ModelForm):

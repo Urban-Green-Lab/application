@@ -91,26 +91,17 @@
 
             <p > <h2 class="result-score">You scored: {{score}} points</h2></p
             >
-            <table class="table">
-              <thead>
-                <tr class="">
-                  <th scope="col">Question</th>
-                  <th scope="col">Correct Answer</th>
-                  <th scope="col">More Info</th>
-                </tr>
-              </thead>
-              <tbody>
+
                 {% for items in question_answers%}
-                <tr>
-                  <td>{{items.question}}</td>
-                  <td>{{items.answer}}</td>
-                  <td><a href="{{items.info_link}}">Link</a></td>
-                </tr>
+                  <p><span class="result-label">Question: </span>{{items.question}}</p>
+                  
+                  <p><span class="result-label">Correct Answer: </span>{{items.answer}}</p>
+                  {% if items.info_link %}
+                    <p><a href="{{items.info_link}}">More Info</a></p>
+                  {% endif %}
+                  <hr>
                 {% endfor %}
-              </tbody>
-            </table>
           </div>
-          <hr />
           <p>
             Urban Green Lab teaches communities how to live sustainably. Check
             out our <a href="https://urbangreenlab.org/living-sustainably/" target="_blank">list of recommendations and resources</a> that will guide you

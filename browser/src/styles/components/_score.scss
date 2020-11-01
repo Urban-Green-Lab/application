@@ -14,16 +14,16 @@
   justify-content: center;
   padding: 30px;
 
-  p {
-    font-family: "Roboto", sans-serif;
-    font-size: 16px;
+  .score-level-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
   }
 
   .score-body {
     background-color: $white;
     border-radius: 20px;
-    margin-bottom: 40px;
-    padding: 30px;
+    margin-bottom: 20px;
+    padding: 30px 30px 40px 30px;
     width: 100%;
     max-width: 450px;
     z-index: 1;
@@ -44,7 +44,7 @@
     }
   }
   .scoreText {
-    font-family: "GT Walsheim Pro Black";
+    font-family: 'GT Walsheim Pro Black';
     font-size: 12px;
   }
 
@@ -52,12 +52,12 @@
     color: $font-main;
     background-color: transparent;
     margin-left: 70%;
-    width: 50px;
+    width: 100px;
     padding: 0%;
     border: none;
   }
 
   .btn-dark {
-    margin-top: 60px;
+    margin-top: 30px;
   }
 }
