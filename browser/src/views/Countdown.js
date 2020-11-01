@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import UglLogo from '../images/UglLogo.png';
+import Footer from '../components/Footer';
 import floatingBoxes from '../images/floatingBoxes.png';
 
 export default class Countdown extends Component {
@@ -11,6 +11,10 @@ export default class Countdown extends Component {
 
   componentDidMount() {
     this.handleStart();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   format = (time) => {
@@ -46,8 +50,7 @@ export default class Countdown extends Component {
           <h1>Get ready!</h1>
           {this.renderonDOM()}
         </div>
-        <p>brought to you by</p>
-        <img src={UglLogo} alt="urban green lab" className="ugl-logo"/>
+        <Footer />
       </div>
     );
   }

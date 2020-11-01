@@ -12,20 +12,42 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px;
+  padding: 20px 30px 30px 30px;
 
   h1 {
     font-size: 28px;
     letter-spacing: 1.4px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     text-align: center;
+
+    @media only screen and (min-width: 800px) {
+      font-size: 40px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .btn-container {
+    text-align: left;
+    width: 100%;
+    max-width: 450px;
+    padding-bottom: 10px;
+    z-index: 3;
+  }
+  .closeBtn {
+    font-family: "GT Walsheim Pro Black";
+    align-self: left !important;
+    color: $font-main;
+    background-color: transparent;
+    width: 100px;
+    padding: 0;
+    border: none;
   }
 
   .home-form {
     background-color: $white;
     border-radius: 20px;
-    margin-bottom: 40px;
-    padding: 60px 30px 40px;
+    margin-bottom: 15px;
+    padding: 25px 40px;
     width: 100%;
     max-width: 450px;
     z-index: 1;
