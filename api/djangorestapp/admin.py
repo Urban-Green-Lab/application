@@ -135,9 +135,11 @@ class MyAdminSite(AdminSite):
         if action == "edit":
             answer_inst = question.questionbankanswer_set.all().order_by("answer")
             answers = [None, None, None, None]
-            for i in range(len(answers)):
-                if 4 > i:
-                    answers[i] = answer_inst[i]
+
+            if len(answer_inst) != 0:
+                for i in range(len(answers)):
+                    if 4 > i:
+                        answers[i] = answer_inst[i]
 
             # print(answers)
             def get_answer(index):
