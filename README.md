@@ -21,6 +21,7 @@ There is a backend admin site as well as a user application for game play, which
 - [Code Reviews](#code-reviews)
 - [Deployment](#deployment)
 - [Data Structure/ERD](#data-structureerd)
+- [Test Plan](./TestPlan.md)
 - [Contributors](#contributors)
 
 ## Tech Stack:
