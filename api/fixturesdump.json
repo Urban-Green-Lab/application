@@ -12,22 +12,22 @@
   {
     "model": "djangorestapp.quizbank",
     "pk": 3,
-    "fields": { "name": "5 General Questions", "timer": 5 }
+    "fields": { "name": "5 General Questions" }
   },
   {
     "model": "djangorestapp.quizbank",
     "pk": 4,
-    "fields": { "name": "Households", "timer": 5 }
+    "fields": { "name": "Households" }
   },
   {
     "model": "djangorestapp.quizbank",
     "pk": 5,
-    "fields": { "name": "WORKPLACES", "timer": 5 }
+    "fields": { "name": "WORKPLACES" }
   },
   {
     "model": "djangorestapp.quizbank",
     "pk": 6,
-    "fields": { "name": "Classrooms", "timer": 5 }
+    "fields": { "name": "Classrooms" }
   },
   {
     "model": "djangorestapp.eventquiz",

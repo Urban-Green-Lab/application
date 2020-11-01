@@ -233,15 +233,13 @@
     "pk": 1,
     "fields": {
       "name": "Work",
-      "timer": 5
     }
   },
   {
     "model": "djangorestapp.quizbank",
     "pk": 2,
     "fields": {
-      "name": "Chritmas",
-      "timer": 5
+      "name": "Chritmas"
     }
   },
   {

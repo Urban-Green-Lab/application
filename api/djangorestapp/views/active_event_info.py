@@ -27,15 +27,11 @@ class ActiveEventSerializer(serializers.Serializer):
     event_id = serializers.SerializerMethodField()
     child_mode = serializers.BooleanField()
     quiz_id = serializers.SerializerMethodField()
-    timer = serializers.SerializerMethodField()
     questions = serializers.SerializerMethodField()
 
     def get_event_id(self, obj):
         id = obj.id
         return id
-
-    def get_timer(self, obj):
-        return self.get_quiz(obj).timer
 
     def get_quiz_id(self, obj):
         return self.get_quiz(obj).id

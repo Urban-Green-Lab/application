@@ -59,9 +59,6 @@
       <th>
       Name
       </th>
-      <th>
-      Timer
-      </th>
     </tr>
   </thead>
   <tbody>
@@ -71,9 +68,6 @@
             <a href="{% url 'admin:quiz_detail' quiz_id=q.id %}">
                 <p>{{q.name}} </p>
             </a>
-        </td>
-        <td>
-            <p>{{q.timer}} </p>
         </td>
         </tr>
     {% endfor %}

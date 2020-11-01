@@ -3,7 +3,6 @@
     "event_id": 1,
     "quiz_id": 1,
     "child_mode": false,
-    "timer": 5,
     "questions": [
       {
         "question": "Which energy source do we use the most for electricity in Tennessee?",
@@ -134,7 +133,6 @@
     "event_id": 2,
     "quiz_id": 2,
     "child_mode": false,
-    "timer": 8,
     "questions": [
       {
         "question": "Which of the following household appliances uses the most energy?",
@@ -326,7 +324,6 @@
     "event_id": 3,
     "quiz_id": 3,
     "child_mode": false,
-    "timer": 10,
     "questions": [
       {
         "question": "Recycling 1 ton of paper saves __________.",
@@ -510,7 +507,6 @@
     "event_id": 4,
     "quiz_id": 4,
     "child_mode": true,
-    "timer": 3,
     "questions": [
       {
         "question": "It’s estimated that nearly 480,000 school buses carry ___ million students to and from school every day of the school year.",
