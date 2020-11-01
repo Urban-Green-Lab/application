@@ -59,7 +59,7 @@ export default class App extends Component {
             exact
             component={Splash}
           />
-          {/* <Route path='*' exact={true} component={Splash} /> */}
+          <Route component={Splash} />
         </Switch>
       </BrowserRouter>
     );
