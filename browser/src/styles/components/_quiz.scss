@@ -1,13 +1,4 @@
 .quiz-container {
-  background: rgb(246, 233, 242);
-  background: linear-gradient(
-    0deg,
-    rgba(246, 233, 242, 1) 0%,
-    rgba(245, 204, 137, 1) 100%
-  );
-  @media only screen and (min-width: 800px) {
-    height: 100vh;
-  }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,6 +81,10 @@
     color: $asphalt-black;
     font-size: 15px;
   }
+
+  @media only screen and (min-width: 900px) {
+    height: 100vh;
+  }
 }
 
 .quiz-header {
@@ -108,6 +103,11 @@
 }
 
 .score-info {
+  width: 100%;
+  margin: 20px 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
   .correct-emoji {
     display: flex;
     align-items: center;

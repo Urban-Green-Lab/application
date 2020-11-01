@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import UglLogo from '../images/UglLogo.png';
-import floatingBoxes from '../images/floatingBoxes.png';
 
 class Thanks extends Component {
   render() {
     return (
       <div className="text-center thanksContainer">
-        <img src={floatingBoxes} alt="" className="bg-img"/>
-
         <div className="wrapper">
           <img src={UglLogo} alt="urban green lab" className="logo"/>
           <h1> Thank you for playing! </h1>

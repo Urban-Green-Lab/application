@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import partypopper from '../images/partypopper.png';
-import floatingBoxes from '../images/floatingBoxes.png';
 import Footer from '../components/Footer';
 
 class Score extends Component {
@@ -27,8 +26,6 @@ class Score extends Component {
     const score = localStorage.getItem('score');
     return (
         <div className="scoreContainer text-center">
-          <img src={floatingBoxes} alt="" className="bg-img"/>
-
           <div className="score-body">
             <Button className="closeBtn" onClick={() => this.props.history.push('/thanks')}>Exit &nbsp;<i className="fas fa-times"></i></Button>
             <img className="centerImg" src={partypopper} alt="party popper emoji" />

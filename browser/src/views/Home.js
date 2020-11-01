@@ -4,7 +4,6 @@ import {
   Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
 import Footer from '../components/Footer';
-import floatingBoxes from '../images/floatingBoxes.png';
 
 export default class Home extends Component {
   state = {
@@ -29,8 +28,6 @@ export default class Home extends Component {
   render() {
     return (
       <div className="home">
-        <img src={floatingBoxes} alt="" className="bg-img"/>
-
         <div className="btn-container">
           <Link className="closeBtn" to={'/'}><i className="fas fa-chevron-left"></i>&nbsp; Go Back</Link>
         </div>
