@@ -4,7 +4,6 @@ import Modal from '../components/Modal';
 import NoActiveEvents from '../components/Modal/NoActiveEvents';
 import question from '../images/question.png';
 import sustaingame from '../images/sustaingame.png';
-import floatingBoxes from '../images/floatingBoxes.png';
 import getActiveEvent from '../data/getActiveEvent';
 import Footer from '../components/Footer';
 
@@ -34,7 +33,6 @@ export default class Splash extends Component {
   render() {
     return (
       <div className="splash">
-        <img src={floatingBoxes} alt="" className="bg-img"/>
         <img src={question} alt="question mark" className="question"/>
         <img src={sustaingame} alt="sustain game" className="sustaingame-img"/>
         <Footer />

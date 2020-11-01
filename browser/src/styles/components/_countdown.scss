@@ -1,13 +1,4 @@
 .countdown {
-  background: rgb(246, 233, 242);
-  background: linear-gradient(
-    0deg,
-    rgba(246, 233, 242, 1) 0%,
-    rgba(245, 204, 137, 1) 100%
-  );
-  @media only screen and (min-width: 800px) {
-    height: 100vh;
-  }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,5 +33,9 @@
       margin: 0 auto;
       display: block;
     }
+  }
+
+  @media only screen and (min-width: 900px) {
+    height: 100vh;
   }
 }

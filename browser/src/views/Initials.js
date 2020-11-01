@@ -4,7 +4,6 @@ import {
 } from 'reactstrap';
 import postUserInfo from '../data/postUserObject';
 import Footer from '../components/Footer';
-import floatingBoxes from '../images/floatingBoxes.png';
 
 class Initials extends Component {
   state = {
@@ -39,8 +38,6 @@ class Initials extends Component {
     const score = localStorage.getItem('score');
     return (
       <div className="initialsWrapper">
-        <img src={floatingBoxes} alt="" className="bg-img"/>
-
         <div className="initialsContainer">
           <div className="btn-container">
             <Button className="closeBtn" onClick={() => this.props.history.push('/thanks')}>Exit &nbsp;<i className="fas fa-times"></i></Button>
@@ -52,9 +49,7 @@ class Initials extends Component {
           <Form onSubmit={this.handleClick}>
             <div className="text-center">
               <FormGroup>
-                <Input className="form-control mt-3" type="text" name="initials" id="initials" placeholder="initials" style={{
-                  textTransform: 'uppercase', textAlign: 'center', width: '64%', margin: '0 auto', fontSize: '30px',
-                }} maxLength="3" required onChange={this.handleChange} />
+                <Input className="form-control mt-3 initials-input" type="text" name="initials" id="initials" placeholder="initials" maxLength="3" required onChange={this.handleChange} />
                 <Button className="mt-5" size="lg"> Add my score </Button>
               </FormGroup>
             </div>

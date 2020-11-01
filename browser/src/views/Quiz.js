@@ -3,7 +3,6 @@ import { Alert } from 'reactstrap';
 import getActiveEvent from '../data/getActiveEvent';
 import Question from '../components/Question';
 import Answers from '../components/Answers';
-import floatingBoxes from '../images/floatingBoxes.png';
 import Footer from '../components/Footer';
 import sadface from '../images/sadface.png';
 import happyface from '../images/happyface.png';
@@ -19,11 +18,12 @@ export default class Quiz extends Component {
 
   componentDidMount() {
     getActiveEvent().then((resp) => {
+      console.warn(resp);
       localStorage.setItem('event_id', resp.event_id);
       localStorage.setItem('quiz_bank', resp.quiz_id);
-      localStorage.setItem('questions', resp.questions.length);
+      localStorage.setItem('questions', resp[0].questions.length);
       this.setState({
-        questions: resp.questions,
+        questions: resp[0].questions,
         quiz_bank: resp.quiz_id,
         event_id: resp.event_id,
       }, this.handleStart);
@@ -178,7 +178,7 @@ export default class Quiz extends Component {
   renderonDOM = () => {
     const some = <>
           {this.state.questions.length > 0 ? this.renderQuestion() : 'Question Loading...'}
-          {this.state.questions.length > 0 ? <div className='container'>{this.renderMiddleSection()}</div> : '' }
+          {this.state.questions.length > 0 ? <div>{this.renderMiddleSection()}</div> : '' }
           {this.state.questions.length > 0 && <div className={`answer-column ${this.state.is_correct !== '' ? 'not-active' : ''}`}>{this.renderAnswerButtons()}
           </div>}
         </>;
@@ -190,14 +190,20 @@ export default class Quiz extends Component {
     return view;
   };
 
+  noBack = () => {
+    window.history.pushState(null, document.title, window.location.href);
+    window.addEventListener('popstate', () => {
+      window.history.pushState(null, document.title, window.location.href);
+    });
+  }
+
   render() {
     return (
       <div className="quiz-container">
-        <img src={floatingBoxes} alt="" className="bg-img"/>
-
         <div className="quiz">
           <div className="quiz-header">
             <div className="question-count">
+              {this.noBack()}
               {Number(this.props.match.params.id) + 1} / {this.state.questions.length}
             </div>
             <div className="score">{this.state.score}pts</div>

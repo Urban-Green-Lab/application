@@ -1,18 +1,10 @@
 .thanksContainer {
-  background: rgb(246, 233, 242);
-  background: linear-gradient(
-    0deg,
-    rgba(246, 233, 242, 1) 0%,
-    rgba(245, 204, 137, 1) 100%
-  );
-  @media only screen and (min-width: 800px) {
-    height: 100vh;
-  }
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 50px 30px;
+  
   h1 {
     font-size: 28px;
     letter-spacing: 1.4px;
@@ -36,5 +28,9 @@
     margin-bottom: 20px;
     max-width: 100%;
     width: 180px;
+  }
+
+  @media only screen and (min-width: 900px) {
+    height: 100vh;
   }
 }

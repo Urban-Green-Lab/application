@@ -1,31 +1,26 @@
-img {
-  z-index: 1;
-}
-
 .splash {
-  background: rgb(246, 233, 242);
-  background: linear-gradient(
-    0deg,
-    rgba(246, 233, 242, 1) 0%,
-    rgba(245, 204, 137, 1) 100%
-  );
-  @media only screen and (min-width: 800px) {
-    height: 100vh;
-  }
-  padding: 50px 0;
+  padding: 60px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
 
-.question {
-  margin-bottom: 20px;
-  width: 90px;
-}
+  img {
+    z-index: 1;
+  }
 
-.sustaingame-img {
-  margin-bottom: 20px;
-  max-width: 315px;
-  width: 100%;
+  .question {
+    margin-bottom: 20px;
+    width: 90px;
+  }
+  
+  .sustaingame-img {
+    margin-bottom: 20px;
+    max-width: 315px;
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 900px) {
+    height: 100vh;
+  }
 }

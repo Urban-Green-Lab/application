@@ -17,18 +17,6 @@
           {
             "answer": "Nuclear",
             "is_correct": true
-          },
-          {
-            "answer": "Solar",
-            "is_correct": false
-          },
-          {
-            "answer": "Natural Gas",
-            "is_correct": false
-          },
-          {
-            "answer": "Hydroelectric",
-            "is_correct": false
           }
         ]
       },

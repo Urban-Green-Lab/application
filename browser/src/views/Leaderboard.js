@@ -3,7 +3,6 @@ import { Button, Table } from 'reactstrap';
 import getLeaderBoardInfo from '../data/getLeaderboardInfo';
 import sustaingame from '../images/sustaingame.png';
 import Footer from '../components/Footer';
-import floatingBoxes from '../images/floatingBoxes.png';
 
 export default class Leaderboard extends Component {
   state = {
@@ -21,8 +20,6 @@ export default class Leaderboard extends Component {
   render() {
     return (
       <div className='leaderboard-container'>
-        <img src={floatingBoxes} alt="" className="bg-img"/>
-
         <div className='small-container'>
         <div className="btn-container">
           <Button className="closeBtn" onClick={() => this.props.history.push('/thanks')}>Exit &nbsp;<i className="fas fa-times"></i></Button>
