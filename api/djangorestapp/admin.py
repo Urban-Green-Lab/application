@@ -332,7 +332,7 @@ class QuizTakerAdmin(ModelAdmin):
     Select the users that should be downloaded
     Disallow add and change on this view
     """
-    list_display = ['fname', 'lname', 'email', 'event', 'created_at', "date"]
+    list_display = ['fname', 'lname', 'email', 'event', 'submit_date', "date"]
     list_filter = ('event',)
     ordering = ['email', 'fname']
     actions = ['export_as_csv']
