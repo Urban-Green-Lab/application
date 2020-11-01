@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Button, Table } from 'reactstrap';
 import getLeaderBoardInfo from '../data/getLeaderboardInfo';
 import sustaingame from '../images/sustaingame.png';
-import UglLogo from '../images/UglLogo.png';
+import Footer from '../components/Footer';
+import floatingBoxes from '../images/floatingBoxes.png';
 
 export default class Leaderboard extends Component {
   state = {
@@ -20,16 +21,17 @@ export default class Leaderboard extends Component {
   render() {
     return (
       <div className='leaderboard-container'>
+        <img src={floatingBoxes} alt="" className="bg-img"/>
+
         <div className='small-container'>
         <div className="btn-container">
-          <Button className="closeBtn" onClick={() => this.props.history.push('/thanks')}>Exit</Button>
+          <Button className="closeBtn" onClick={() => this.props.history.push('/thanks')}>Exit &nbsp;<i className="fas fa-times"></i></Button>
         </div>
           <img src={sustaingame} alt="sustain game" className="sustaingame-img"/>
           <h1>Leaderboard</h1>
     <div className='score-table'>{this.state.scores.length > 0 ? <ScoresTable scores={this.state.scores} /> : <><h4 style={{ textAlign: 'center' }}>Be the first to score!</h4> <Button onClick={() => this.props.history.push('/')}>PLAY NOW</Button></>}</div>
         </div>
-        <p>brought to you by</p>
-        <img src={UglLogo} alt="urban green lab" className="ugl-logo"/>
+        <Footer />
       </div>
     );
   }
@@ -40,7 +42,7 @@ function ScoresTable(props) {
     <Table borderless>
       <tbody>
         {props.scores.map((s, i) => <tr key={i}>
-        <td></td>
+        <td>{i === 0 ? <>&#129351;</> : '' } { i === 1 ? <>&#129352;</> : '' } {i === 2 ? <>&#129353;</> : ''}</td>
         <th scope="row">{i + 1}</th>
         <th scope="row">{s.initials}</th>
         <td className='align-right'>{s.score}pts</td>

@@ -7,7 +7,6 @@ const Answer = (props) => props.a.map((a, i) => <Button
     id={`button-${i}`}
     key={i}
     onClick={() => props.click(props.id, a.is_correct, i)}
-    // disabled={props.disabled}
   >
     {a.answer}
   </Button>);

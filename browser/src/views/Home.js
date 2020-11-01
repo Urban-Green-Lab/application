@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
-import UglLogo from '../images/UglLogo.png';
+import Footer from '../components/Footer';
 import floatingBoxes from '../images/floatingBoxes.png';
 
 export default class Home extends Component {
@@ -30,6 +31,9 @@ export default class Home extends Component {
       <div className="home">
         <img src={floatingBoxes} alt="" className="bg-img"/>
 
+        <div className="btn-container">
+          <Link className="closeBtn" to={'/'}><i className="fas fa-chevron-left"></i>&nbsp; Go Back</Link>
+        </div>
         <div className="home-form">
           <h1>Before we begin</h1>
           <Form onSubmit={this.handleSubmit} >
@@ -52,8 +56,7 @@ export default class Home extends Component {
             <Button className='btn btn-dark'>Get Ready</Button>
           </Form>
         </div>
-        <p>brought to you by</p>
-        <img src={UglLogo} alt="urban green lab" className="ugl-logo"/>
+        <Footer />
       </div>
     );
   }

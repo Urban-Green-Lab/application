@@ -4,7 +4,7 @@ import getActiveEvent from '../data/getActiveEvent';
 import Question from '../components/Question';
 import Answers from '../components/Answers';
 import floatingBoxes from '../images/floatingBoxes.png';
-import UglLogo from '../images/UglLogo.png';
+import Footer from '../components/Footer';
 import sadface from '../images/sadface.png';
 import happyface from '../images/happyface.png';
 
@@ -21,6 +21,7 @@ export default class Quiz extends Component {
     getActiveEvent().then((resp) => {
       localStorage.setItem('event_id', resp.event_id);
       localStorage.setItem('quiz_bank', resp.quiz_id);
+      localStorage.setItem('questions', resp.questions.length);
       this.setState({
         questions: resp.questions,
         quiz_bank: resp.quiz_id,
@@ -144,7 +145,7 @@ export default class Quiz extends Component {
         <img src={happyface} alt="happy face emoji"/>
       </div>
       <div className="result">
-        <p className="correct-result">CORRECT {this.state.current_value}pts! </p>
+        <p className="correct-result">CORRECT</p>
         <p className="correct-bonus">BONUS +{this.state.current_bp} for fast answer</p>
       </div>
     </Alert>;
@@ -176,8 +177,8 @@ export default class Quiz extends Component {
 
   renderonDOM = () => {
     const some = <>
-          {this.state.questions.length > 0 ? this.renderQuestion() : 'Loading'}
-          {this.state.questions.length > 0 ? <div className='container'>{this.renderMiddleSection()}</div> : 'Loading' }
+          {this.state.questions.length > 0 ? this.renderQuestion() : 'Question Loading...'}
+          {this.state.questions.length > 0 ? <div className='container'>{this.renderMiddleSection()}</div> : '' }
           {this.state.questions.length > 0 && <div className={`answer-column ${this.state.is_correct !== '' ? 'not-active' : ''}`}>{this.renderAnswerButtons()}
           </div>}
         </>;
@@ -204,9 +205,7 @@ export default class Quiz extends Component {
           <div className='quiz-body'>{this.renderonDOM()}</div>
           <div className='container'>{(this.state.count === 0 && this.state.questions.length) && this.runIt(this.props.match.params.id, false, 'time')}</div>
         </div>
-
-        <p>brought to you by</p>
-        <img src={UglLogo} alt="urban green lab" className="ugl-logo"/>
+        <Footer />
       </div>
     );
   }
