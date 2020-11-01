@@ -18,7 +18,6 @@ export default class Quiz extends Component {
 
   componentDidMount() {
     getActiveEvent().then((resp) => {
-      console.warn(resp);
       localStorage.setItem('event_id', resp.event_id);
       localStorage.setItem('quiz_bank', resp.quiz_id);
       localStorage.setItem('questions', resp.questions.length);
