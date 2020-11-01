@@ -38,7 +38,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = not is_prod
 
 # TCT_TODO: Remove this localhost link
-ALLOWED_HOSTS = ["sustaingame-admin.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["sustaingame-admin.herokuapp.com"]
 
 
 # Application definition
@@ -67,6 +67,12 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+} 
 
 ROOT_URLCONF = 'djangorestproj.urls'
 
@@ -166,8 +172,8 @@ if is_prod:
 # gmail_send/settings.py
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST', None)
-EMAIL_HOST_PASSWORD = os.getenv('GMAIL_PASSWORD', None)
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST')
+EMAIL_HOST_PASSWORD = os.getenv('GMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
