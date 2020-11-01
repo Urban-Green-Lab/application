@@ -21,9 +21,9 @@ export default class Quiz extends Component {
       console.warn(resp);
       localStorage.setItem('event_id', resp.event_id);
       localStorage.setItem('quiz_bank', resp.quiz_id);
-      localStorage.setItem('questions', resp[0].questions.length);
+      localStorage.setItem('questions', resp.questions.length);
       this.setState({
-        questions: resp[0].questions,
+        questions: resp.questions,
         quiz_bank: resp.quiz_id,
         event_id: resp.event_id,
       }, this.handleStart);
