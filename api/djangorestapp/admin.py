@@ -17,14 +17,15 @@ from django.shortcuts import get_object_or_404, redirect
 import json
 import csv
 from django.http import HttpResponse
+from djangorestproj import settings
 
 
 class MyAdminSite(AdminSite):
     index_template = "tutorial.html"
     index_title = None
-    site_header = "Urban Green Lab Admin"
-    site_title = "UGL Admin Portal"
-    site_url = "https://uglapp.netlify.app/"
+    site_header = settings.ADMIN_SITE_HEADER
+    site_title = settings.ADMIN_SITE_TITLE
+    site_url = settings.ADMIN_SITE_URL
 
     def get_urls(self):
         urls = super().get_urls()
