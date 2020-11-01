@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block content %}
+
+
+
+<div class="container">
+  <h1 class="turotial_title">How to get Started</h1>
+  <ol>
+    <li class="turotial_item">Add questions to the question bank</li>
+    <li class="turotial_item">Create quizzes from the questions</li>
+    <li class="turotial_item">Schedule events with a quiz</li>
+    <li class="turotial_item">To download a csv of players, click on <a href="{% url 'admin:djangorestapp_quiztaker_changelist'%}">View Quiz Takers</a>
+    <ul>
+      <li class="turotial_item_item">List can be filtered by event on the right</li>
+      <li class="turotial_item_item">Click select or select all rows of what 
+      information you want to download</li>
+      <li class="turotial_item_item">Then in the action dropdown select "Export Selected As CSV" and click go</li>
+    </ul> 
+        </li>
+  </ol>
+</div>
+</div>
+{% endblock %}

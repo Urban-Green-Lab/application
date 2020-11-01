@@ -1,0 +1,17 @@
+Thank you for playing
+
+To learn more about Urban Green Lab, we encourage you to explore our website. There you'll discover our diverse programs, resources for your home or workplace, our blog, coming events, and more.
+* * *
+
+You scored: {{score}} points
+
+{% for items in question_answers%} 
+Question: {{items.question}}
+Correct Answer: {{items.answer}}
+More Information: {{items.info_link}}
+
+{% endfor %}
+* * *
+Urban Green Lab teaches communities how to live sustainably. Check out our list of recommendations and resources that will guide you down the path to living a more sustainable life: https://urbangreenlab.org/living-sustainably/
+
+Reach out to us by email at connect@urbangreenlab.org

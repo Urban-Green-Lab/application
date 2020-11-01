@@ -1,0 +1,87 @@
+{% extends "base.html" %} 
+
+{% block content %}
+{% with app_path as path %}
+{% include "breadcrumbs.html" %}
+{% endwith %}
+<div class="container">
+
+
+<div class="display-4">Event: </div>
+<table>  
+    <thead>
+      <tr>
+        <th>
+          <div class="">
+            Name
+          </div>
+        </th>
+        <th>
+          <div class="">
+            Active
+          </div>
+        </th>
+        <th>
+          <div class="">
+            Child Mode
+          </div>
+        </th>
+        <th>
+          <div class="">
+            Date
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr> 
+                <td> 
+                    <p>{{event.name}} </p>
+                </td>
+                <td> 
+                    <p>{{event.active}} </p>
+                </td>
+                <td> 
+                    <p>{{event.child_mode}} </p>
+                </td>
+                <td> 
+                    <p>{{event.date}} </p>
+                </td>
+            </tr>
+    </tbody>
+  </table>
+
+<div class="display-4">Quizzes</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>
+      Name
+      </th>
+      <th>
+      Timer
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for q in quizzes %}
+        <tr>
+        <td>
+            <a href="{% url 'admin:quiz_detail' quiz_id=q.id %}">
+                <p>{{q.name}} </p>
+            </a>
+        </td>
+        <td>
+            <p>{{q.timer}} </p>
+        </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  <div class="button-group">
+
+<a style="color: white" href="{% url "admin:event_edit" event_id=event.id%}"  class="btn btn-primary edit-button" role="button" >Edit</a>
+<a style="color: white" href="{% url "admin:event_delete" event_id=event.id%}"  class="btn btn-danger delete-button" role="button" >Delete</a></div><div class="delete-helper">If you delete an event, any quiz taker associated with it will be removed!</div>
+</div>
+ {% endblock %}

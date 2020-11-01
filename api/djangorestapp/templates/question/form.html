@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block content %}{% with app_path as path %}
+{%include "breadcrumbs.html" %} {% endwith %}
+<div class="container"> 
+
+<form
+  id="quiz-form"
+  action="{% url 'admin:question_form' %}"
+  class="form"
+  method="post"
+>
+  <div class="display-4"
+    >{% if question.id%} Edit {% else %} Create {% endif %}Question</div
+  >
+  <hr />
+  {% csrf_token %} {{ question_form.as_p }}
+  <hr />
+  <div id="answer-forms" class="answers">
+    <h2>Answers</h2>
+
+    <div class="answer-form"> {{ answer_form_1.as_p }} </div>
+    <div class="answer-form"> {{ answer_form_2.as_p }} </div>
+    <div class="answer-form"> {{ answer_form_3.as_p }} </div>
+    <div class="answer-form"> {{ answer_form_4.as_p }} </div>
+  </div>
+
+  <input type="hidden" name="question_id" value="{{question.id}}" />
+  <input type="hidden" name="answers" value="{{answers}}" />
+
+  <input type="submit" id="submit-button" value="OK" />
+  <span id="answer-error"> </span>
+</form>
+  </div>
+
+<script>
+  const inputs = $('input:checkbox');
+  const textInputs = $('input:text');
+  const submit = $('#submit-button');
+  const error = $('#answer-error');
+  const checkChecks = () => {
+    let checked = 0;
+    let checked_element_id = null;
+    for (input of inputs) {
+      if (input.checked) {
+        checked++;
+        checked_element_id = input.id.match(/\d+/)[0];
+      }
+    }
+    if (checked == 0) {
+      submit.prop('disabled', true);
+      error.html('You have to select a correct answer');
+    } else if (checked == 1) {
+      if ($(`#id_a${checked_element_id}-answer`)[0].value) {
+        submit.prop('disabled', false);
+        error.html('');
+      } else {
+        submit.prop('disabled', true);
+        error.html('The correct answer has to have a value');
+      }
+    } else if (checked > 1) {
+      submit.prop('disabled', true);
+      error.html('You can only select one correct answer');
+    } else {
+      submit.prop('disabled', false);
+      error.html('');
+    }
+  };
+  checkChecks();
+  inputs.change(checkChecks);
+  textInputs.keypress(checkChecks);
+</script>
+{% endblock %}

@@ -1,9 +1,6 @@
 from django.db import models
-from safedelete.models import SafeDeleteModel
-from safedelete.models import HARD_DELETE_NOCASCADE
 
-
-class Event(SafeDeleteModel):
+class Event(models.Model):
     """Event Model
 
     Description: Stores a single event
@@ -15,11 +12,10 @@ class Event(SafeDeleteModel):
     - active =  `BooleanField`
     - date = `DateField(auto_now=False, auto_now_add=False)`
     """
-    # Added this because the important quiz_taker model uses
-    _safedelete_policy = HARD_DELETE_NOCASCADE
 
     name = models.CharField(max_length=255)
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(
+        default=False,  help_text="Selecting this will deactivate active events")
     child_mode = models.BooleanField(default=False)
     date = models.DateField(auto_now=False, auto_now_add=False)
 
@@ -32,3 +28,9 @@ class Event(SafeDeleteModel):
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.active:
+            Event.objects.filter(active=True).update(active=False)
+
+        super().save(*args, **kwargs)

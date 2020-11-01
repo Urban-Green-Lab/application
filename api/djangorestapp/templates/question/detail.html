@@ -1,0 +1,42 @@
+{% extends "base.html" %} 
+
+{% block content %}{% with app_path as path %}
+{% include "breadcrumbs.html" %}
+{% endwith %}
+<div class="container"> 
+
+    <div class="display-4">Question: {{question.question}}</div>
+<table>  
+    <thead>
+      <tr>
+        <th>
+          <div class="">
+            Answer
+          </div>
+        </th>
+        <th>
+          <div class="">
+            Is Correct
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for a in answers %}
+            <tr> 
+                <td> 
+                    {{a.answer}}
+                </td>
+                <td> 
+                    {{a.is_correct}}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  <div class="button-group">
+
+    <a style="color: white" href="{% url "admin:question_edit" question_id=question.id%}"  class="btn btn-primary edit-button" role="button" >Edit</a>
+    <a style="color: white" href="{% url "admin:question_delete" question_id=question.id%}"  class="btn btn-danger delete-button" role="button" >Delete</a></div>
+</div>
+{% endblock %}
