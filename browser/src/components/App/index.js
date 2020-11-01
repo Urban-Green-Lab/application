@@ -54,6 +54,7 @@ export default class App extends Component {
             exact
             component={Leaderboard}
           />
+          <Route path='*' exact={true} component={Splash} />
         </Switch>
       </BrowserRouter>
     );
