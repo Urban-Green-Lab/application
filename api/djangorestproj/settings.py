@@ -23,24 +23,22 @@ is_prod = os.getenv('IS_HEROKU', False)
 if is_prod is False:
     import djangorestproj.hidden_keys
 
+ADMIN_SITE_URL = os.getenv('ADMIN_SITE_URL')
+
 CORS_ORIGIN_WHITELIST = (
-    # "FRONT_END_DOMAIN_URL",  # TCT_TODO: Update this link
-    "http://localhost:8000",  # TCT_TODO: Remove this localhost link
-    "http://localhost:3000",  # TCT_TODO: Remove this localhost link
-    "https://uglapp.netlify.app",
-    "https://deploy-preview-85--uglapp.netlify.app"
+    ADMIN_SITE_URL,
 )
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # Pull in secert key from Environmental Variables
-SECRET_KEY = os.getenv('SECRET_KEY', "test")
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not is_prod
 
 # TCT_TODO: Remove this localhost link
-ALLOWED_HOSTS = ["localhost", "sustaingame-admin.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["sustaingame-admin.herokuapp.com"]
 
 
 # Application definition
@@ -172,5 +170,8 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST', None)
 EMAIL_HOST_PASSWORD = os.getenv('GMAIL_PASSWORD', None)
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'Urban Green Lab')
-SUBJECT_TEXT = os.getenv('SUBJECT_TEXT', 'Thank you for playing Sustain Game')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+SUBJECT_TEXT = os.getenv('SUBJECT_TEXT')
+ADMIN_SITE_HEADER = os.getenv('ADMIN_SITE_HEADER')
+ADMIN_SITE_TITLE = os.getenv('ADMIN_SITE_TITLE')
+
