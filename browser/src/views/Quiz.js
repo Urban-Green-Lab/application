@@ -10,9 +10,9 @@ import happyface from '../images/happyface.png';
 export default class Quiz extends Component {
   state = {
     questions: [],
-    timer: 10,
+    timer: 20,
     score: 0,
-    count: 10,
+    count: 20,
     is_correct: '',
   };
 
@@ -74,7 +74,7 @@ export default class Quiz extends Component {
       if (this.state.questions.length >= Number(id) + 1) {
         document.querySelector('.c').classList.remove('correct');
         document.querySelector(`#button-${i}`).classList.remove('wrong');
-        const bonusPoints = this.state.count * 10;
+        const bonusPoints = this.state.count * 5;
         const score = qpoints ? bonusPoints + 0 : 0;
         this.setState({
           score: this.state.score + score,
