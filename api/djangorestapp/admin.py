@@ -138,10 +138,9 @@ class MyAdminSite(AdminSite):
 
             if len(answer_inst) != 0:
                 for i in range(len(answers)):
-                    if 4 > i:
+                    if len(answer_inst) > i:
                         answers[i] = answer_inst[i]
 
-            # print(answers)
             def get_answer(index):
                 answer = None
                 if answers[index]:
@@ -154,7 +153,6 @@ class MyAdminSite(AdminSite):
                 get_answer(2),
                 get_answer(3)
             ]
-            # print(answers)
             context = dict(
                 self.each_context(request),
                 app_path=request.get_full_path().split("/"),
@@ -367,13 +365,6 @@ class QuizTakerAdmin(ModelAdmin):
         return response
 
     export_as_csv.short_description = "Export Selected As CSV"
-
-
-class QuestionAnswer():
-    def __init__(self, question, answer, info_link):
-        self.question = question
-        self.answer = answer
-        self.info_link = info_link
 
 
 admin_site = MyAdminSite(name='myadmin')
