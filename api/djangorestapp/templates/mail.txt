@@ -8,6 +8,7 @@ You scored: {{score}} points
 {% for items in question_answers%} 
 Question: {{items.question}}
 Correct Answer: {{items.answer}}
+Details: {{items.info_text}}
 More Information: {{items.info_link}}
 
 {% endfor %}

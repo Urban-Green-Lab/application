@@ -6,7 +6,7 @@ from .models import (QuestionBank, QuestionBankAnswer,
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = QuestionBank
-        fields = ["question", "info_link"]
+        fields = ["question", "info_link", "info_text"]
 
 
 class QuestionBankAnswerForm(forms.ModelForm):

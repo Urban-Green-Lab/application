@@ -8,10 +8,12 @@ class QuestionBank(models.Model):
 
     Fields
     - question = `CharField(max_length=255)`
+    - info_text = `CharField(max_length=255)`
     - info_link = `URLField(max_length=200, blank=True, null=True)`
     """
     question = models.CharField(max_length=255)
     info_link = models.URLField(max_length=200, blank=True, null=True)
+    info_text = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         ordering = ["question"]

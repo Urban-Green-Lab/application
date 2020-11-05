@@ -96,6 +96,9 @@
                   <p><span class="result-label">Question: </span>{{items.question}}</p>
                   
                   <p><span class="result-label">Correct Answer: </span>{{items.answer}}</p>
+                  {% if items.info_text %}
+                    <p><span class="result-label">Details: </span>{{items.info_text}}</p>
+                  {% endif %}
                   {% if items.info_link %}
                     <p><a href="{{items.info_link}}">More Info</a></p>
                   {% endif %}

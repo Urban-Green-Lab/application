@@ -31,7 +31,8 @@ def question_form(request):
         question_info = {
             "id": data.get("question_id", None),
             "question": data.get("question", None),
-            "info_link": data.get("info_link", None)
+            "info_link": data.get("info_link", None),
+            "info_text": data.get("info_text", None)
         }
 
         if is_update:
@@ -40,6 +41,7 @@ def question_form(request):
 
             question_bank.question = question_info["question"]
             question_bank.info_link = question_info["info_link"]
+            question_bank.info_text = question_info["info_text"]
             question_bank.save()
             answer_ids = json.loads(data.get("answers"))
             for i in range(len(answers_info)):
@@ -54,12 +56,12 @@ def question_form(request):
                     else:
                         answer.delete()
                 else:
-                    models.QuestionBankAnswer.objects.create(
-                        answer=form_answer["answer"],
-                        is_correct=form_answer["is_correct"],
-                        question_bank=question_bank
-                    )
-                    pass
+                    if form_answer["answer"]:
+                        models.QuestionBankAnswer.objects.create(
+                            answer=form_answer["answer"],
+                            is_correct=form_answer["is_correct"],
+                            question_bank=question_bank
+                        )
 
             return redirect('admin:question_detail', question_id=question_bank.id)
         else:
@@ -67,6 +69,7 @@ def question_form(request):
             question_bank = models.QuestionBank.objects.create(
                 question=question_info["question"],
                 info_link=question_info["info_link"],
+                info_text=question_info["info_text"],
             )
 
             for answer in answers_info:

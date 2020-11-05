@@ -45,7 +45,8 @@ def getQuestionAnswers(quiz_bank_id):
         currentQuestionAnswer = QuestionAnswer(
             question.question_bank.question,
             answer,
-            question.question_bank.info_link
+            question.question_bank.info_link,
+            question.question_bank.info_text,
         )
         question_answers.append(currentQuestionAnswer)
 
@@ -53,10 +54,11 @@ def getQuestionAnswers(quiz_bank_id):
 
 
 class QuestionAnswer():
-    def __init__(self, question, answer, info_link):
+    def __init__(self, question, answer, info_link, info_text):
         self.question = question
         self.answer = answer
         self.info_link = info_link
+        self.info_text = info_text
 
 
 class QuizTakerSerializer(serializers.ModelSerializer):
