@@ -332,13 +332,21 @@ class QuizTakerAdmin(ModelAdmin):
     Select the users that should be downloaded
     Disallow add and change on this view
     """
-    list_display = ['fname', 'lname', 'email',
-                    'event', 'submit_date', "date", "zip_code"]
+    list_display = [
+        'fname',
+        'lname',
+        'email',
+        'event',
+        'submit_date',
+        "event_date",
+        "zip_code",
+        "score"
+    ]
     list_filter = ('event', 'zip_code', 'submit_date')
     ordering = ['email', 'fname']
     actions = ['export_as_csv']
 
-    def date(self, quiz_taker):
+    def event_date(self, quiz_taker):
         return quiz_taker.event.date
 
     def has_add_permission(self, request, obj=None):
