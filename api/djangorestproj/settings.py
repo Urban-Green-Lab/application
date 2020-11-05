@@ -169,7 +169,6 @@ if is_prod:
     DATABASES['default'].update(prod_db)
 
 
-# gmail_send/settings.py
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST')

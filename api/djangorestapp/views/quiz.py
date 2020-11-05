@@ -29,7 +29,6 @@ def quiz_post(request):
                         else:
                             quiz_question.delete()
                     else:
-                        # create
                         if value:
                             question = get_object_or_404(
                                 QuestionBank, pk=int(value))
